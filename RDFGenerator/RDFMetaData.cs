@@ -43,7 +43,8 @@ namespace RDFGenerator
                 new XElement(dcns + "Description", Description),
                 new XElement(dcns + "Format", Format),
                 new XElement(dcns + "Creator", Creator),
-                new XElement(dcns + "Size", Size.ToString(CultureInfo.InvariantCulture))
+                new XElement(dcns + "Size", Size.ToString(CultureInfo.InvariantCulture)),
+                new XElement(dcns + "Type", Type)
             );
 
             return root.ToString();
