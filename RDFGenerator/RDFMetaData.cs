@@ -19,7 +19,7 @@ namespace RDFGenerator
 
         public void Write(String filename)
         {
-            FileStream file = File.Open(filename, FileMode.CreateNew, FileAccess.Write);
+            var file = File.Open(filename, FileMode.CreateNew, FileAccess.Write);
             Write(file);
         }
 
