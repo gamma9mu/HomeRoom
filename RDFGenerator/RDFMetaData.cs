@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
-using System.Xml;
 using System.Xml.Linq;
 
 namespace RDFGenerator
@@ -31,59 +31,30 @@ namespace RDFGenerator
             }
         }
 
-        public XmlDocument ToXml()
+        public String ToXml()
         {
-            var xns = new XNamespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#");
-            var xml = new XmlDocument();
-            var nsmgr = new XmlNamespaceManager(xml.NameTable);
-            nsmgr.AddNamespace("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
-            nsmgr.AddNamespace("dc", "http://purl.org/dc/elements/1.1/");
-            
-            xml.AppendChild(xml.CreateXmlDeclaration("1.0", String.Empty, String.Empty));
-            
-            XmlElement rdf = xml.CreateElement("rdf:Description");
-            XmlAttribute about = xml.CreateAttribute("rdf:about");
-            about.InnerText = Location.ToString();
-            rdf.Attributes.Append(about);
-            
-            if (Title != null)
-            {
-                XmlElement rdftag = xml.CreateElement("dc:Title");
-                rdftag.InnerText = Title;
-                rdf.AppendChild(rdftag);
-            }
+            XNamespace rdfns = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
+            XNamespace dcns = "http://purl.org/dc/elements/1.1/";
+            var root = new XElement(rdfns + "Description",
+                new XAttribute(XNamespace.Xmlns + "rdf", rdfns.NamespaceName),
+                new XAttribute(XNamespace.Xmlns + "dc", dcns.NamespaceName),
+                new XAttribute(rdfns + "about", Location.ToString()),
+                new XElement(dcns + "Title", Title),
+                new XElement(dcns + "Description", Description),
+                new XElement(dcns + "Format", Format),
+                new XElement(dcns + "Creator", Creator),
+                new XElement(dcns + "Size", Size.ToString(CultureInfo.InvariantCulture))
+            );
 
-            if (Description != null)
-            {
-                XmlElement rdftag = xml.CreateElement("dc:Description");
-                rdftag.InnerText = Description;
-                rdf.AppendChild(rdftag);
-            }
-
-            if (Format != null)
-            {
-                XmlElement rdftag = xml.CreateElement("dc:Format");
-                rdftag.InnerText = Format;
-                rdf.AppendChild(rdftag);
-            }
-
-            if (Creator != null)
-            {
-                XmlElement rdftag = xml.CreateElement("dc:Creator");
-                rdftag.InnerText = Creator;
-                rdf.AppendChild(rdftag);
-            }
-
-            xml.AppendChild(rdf);
-            return xml;
+            return root.ToString();
         }
 
         override public String ToString()
         {
-            return ToXml().ToString();
+            return ToXml();
         }
 
-        public static void Main(String[] args)
+        public static void Main()
         {
             var r = new RDFMetaData
                         {
@@ -96,7 +67,7 @@ namespace RDFGenerator
                             Size = 10034
                         };
 
-            Console.Out.WriteLine(r.ToXml().OuterXml);
+            Console.Out.WriteLine(r.ToXml());
         }
     }
 }
