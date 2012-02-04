@@ -121,4 +121,8 @@
     <value>http://www.w3.org/1999/02/22-rdf-syntax-ns#</value>
     <comment>RDF namespace</comment>
   </data>
+  <data name="RDFMetaData_Write_File_does_not_have_write_permissions_">
+    <value xml:space="preserve">File does not have write permissions.</value>
+    <comment>The FileStream to write to cannot be written to.</comment>
+  </data>
 </root>
