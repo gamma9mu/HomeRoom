@@ -9,29 +9,29 @@ namespace RDFGenerator
 {
     public class RDFMetaData
     {
-        public String Title { get; set; } // - A name
-        public String Creator { get; set; } // - Primary "maker"
-        public String Subject { get; set; } // - Topic
-        public String Description { get; set; } // - A brief description
-        public String Publisher { get; set; } // - what it says
+        public String Title { get; set; } // A name
+        public String Creator { get; set; } // Primary "maker"
+        public String Subject { get; set; } // Topic
+        public String Description { get; set; } // A brief description
+        public String Publisher { get; set; } // what it says
 
         // TODO should this be a list?
-        public String Contributor { get; set; } // - what it says
-        public DateTime Date { get; set; } // - A relavent date
-        public String Type { get; set; } // - Genre?
-        public String Format { get; set; } // - Format, eg. MIME type
-        public Uri Identifier { get; set; } // - Reference (used in rdf:RDF>rdf:about)
-        public String Language { get; set; } // - maybe a 2-char international code
+        public String Contributor { get; set; } // what it says
+        public DateTime Date { get; set; } // A relavent date
+        public String Type { get; set; } // Genre?
+        public String Format { get; set; } // Format, eg. MIME type
+        public Uri Identifier { get; set; } // Reference (used in rdf:RDF>rdf:about)
+        public String Language { get; set; } // maybe a 2-char international code
 
         // TODO is this useful?
-        public String Relation { get; set; } // - Related item
-        public String Coverage { get; set; } // - Applicability
-        public String Rights { get; set; } // - IP info
-        public long Size { get; set; } // - File size in bytes
+        public String Relation { get; set; } // Related item
+        public String Coverage { get; set; } // Applicability
+        public String Rights { get; set; } //  IP info
+        public long Size { get; set; } // File size in bytes
 
         public void Write(String filename)
         {
-            var file = File.Open(filename, FileMode.CreateNew, FileAccess.Write);
+            FileStream file = File.Open(filename, FileMode.CreateNew, FileAccess.Write);
             Write(file);
         }
 
@@ -70,8 +70,8 @@ namespace RDFGenerator
                 new XElement(dcns + "Type", Type)
             );
             IEnumerable<XElement> empty = from el in root.Elements()
-                        where (string)el == ""
-                        select el;
+                                          where (string) el == ""
+                                          select el;
             foreach (XElement emptyNode in empty)
             {
                 emptyNode.Remove();
@@ -79,7 +79,7 @@ namespace RDFGenerator
             return root.ToString();
         }
 
-        override public String ToString()
+        public override String ToString()
         {
             return ToXml();
         }
