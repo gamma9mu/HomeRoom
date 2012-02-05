@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Xml.Linq;
 
 namespace RDFGenerator
@@ -46,7 +48,13 @@ namespace RDFGenerator
                 new XElement(dcns + "Size", Size.ToString(CultureInfo.InvariantCulture)),
                 new XElement(dcns + "Type", Type)
             );
-
+            IEnumerable<XElement> empty = from el in root.Elements()
+                        where (string)el == ""
+                        select el;
+            foreach (XElement emptyNode in empty)
+            {
+                emptyNode.Remove();
+            }
             return root.ToString();
         }
 
