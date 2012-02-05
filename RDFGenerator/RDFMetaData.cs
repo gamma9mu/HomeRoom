@@ -48,8 +48,8 @@ namespace RDFGenerator
 
         public String ToXml()
         {
-            XNamespace rdfns = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
-            XNamespace dcns = "http://purl.org/dc/elements/1.1/";
+            XNamespace rdfns = rdf.RDF_NS;
+            XNamespace dcns = rdf.DC_NS;
             var root = new XElement(rdfns + "Description",
                 new XAttribute(XNamespace.Xmlns + "rdf", rdfns.NamespaceName),
                 new XAttribute(XNamespace.Xmlns + "dc", dcns.NamespaceName),

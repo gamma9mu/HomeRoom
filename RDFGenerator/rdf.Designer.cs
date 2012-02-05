@@ -61,6 +61,15 @@ namespace RDFGenerator {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://purl.org/dc/elements/1.1/.
+        /// </summary>
+        internal static string DC_NS {
+            get {
+                return ResourceManager.GetString("DC_NS", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to http://www.w3.org/1999/02/22-rdf-syntax-ns#.
         /// </summary>
         internal static string RDF_NS {
