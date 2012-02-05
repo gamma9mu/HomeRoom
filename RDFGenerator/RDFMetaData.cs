@@ -83,21 +83,5 @@ namespace RDFGenerator
         {
             return ToXml();
         }
-
-        public static void Main()
-        {
-            var r = new RDFMetaData
-                        {
-                            Creator = "Me",
-                            Description = "",
-                            Location = new Uri("http://www.google.com/"),
-                            Title = "Googles",
-                            Type = "Web Page",
-                            Format = "text/html",
-                            Size = 10034
-                        };
-
-            Console.Out.WriteLine(r.ToXml());
-        }
     }
 }
