@@ -17,12 +17,9 @@ namespace RDFGenerator
 
         // TODO should this be a list?
         public String Contributor { get; set; } // - what it says
-
         public DateTime Date { get; set; } // - A relavent date
-
         public String Type { get; set; } // - Genre?
         public String Format { get; set; } // - Format, eg. MIME type
-
         public Uri Identifier { get; set; } // - Reference (used in rdf:RDF>rdf:about)
         public String Language { get; set; } // - maybe a 2-char international code
 
@@ -30,7 +27,6 @@ namespace RDFGenerator
         public String Relation { get; set; } // - Related item
         public String Coverage { get; set; } // - Applicability
         public String Rights { get; set; } // - IP info
-
         public long Size { get; set; } // - File size in bytes
 
         public void Write(String filename)
@@ -43,8 +39,11 @@ namespace RDFGenerator
         {
             if (!file.CanWrite)
             {
-                throw new ArgumentException(rdf.RDFMetaData_Write_File_does_not_have_write_permissions_, "file");
+                throw new ArgumentException(
+                    rdf.RDFMetaData_Write_File_does_not_have_write_permissions_, "file");
             }
+            var sout = new StreamWriter(file);
+            sout.Write(ToXml());
         }
 
         public String ToXml()
