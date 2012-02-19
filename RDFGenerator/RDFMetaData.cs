@@ -50,24 +50,28 @@ namespace RDFGenerator
         {
             XNamespace rdfns = rdf.RDF_NS;
             XNamespace dcns = rdf.DC_NS;
-            var root = new XElement(rdfns + "Description",
+            XNamespace mdns = rdf.MD_NS;
+            var root = new XElement(rdfns + "RDF",
                 new XAttribute(XNamespace.Xmlns + "rdf", rdfns.NamespaceName),
                 new XAttribute(XNamespace.Xmlns + "dc", dcns.NamespaceName),
-                new XAttribute(rdfns + "about", Identifier.ToString()),
-                new XElement(dcns + "Title", Title),
-                new XElement(dcns + "Description", Description),
-                new XElement(dcns + "Format", Format),
-                new XElement(dcns + "Creator", Creator),
-                new XElement(dcns + "Language", Language),
-                new XElement(dcns + "Relation", Relation),
-                new XElement(dcns + "Coverage", Coverage),
-                new XElement(dcns + "Subject", Subject),
-                new XElement(dcns + "Publisher", Publisher),
-                new XElement(dcns + "Contributer", Contributor),
-                new XElement(dcns + "Rights", Rights),
-                new XElement(dcns + "Date", Date.ToShortDateString()),
-                new XElement("Size", Size.ToString(CultureInfo.InvariantCulture)),
-                new XElement(dcns + "Type", Type)
+                new XAttribute(XNamespace.Xmlns + "md", mdns),
+                new XElement(rdfns + "Description",
+                    new XAttribute(rdfns + "about", Identifier.ToString()),
+                    new XElement(dcns + "Title", Title),
+                    new XElement(dcns + "Description", Description),
+                    new XElement(dcns + "Format", Format),
+                    new XElement(dcns + "Creator", Creator),
+                    new XElement(dcns + "Language", Language),
+                    new XElement(dcns + "Relation", Relation),
+                    new XElement(dcns + "Coverage", Coverage),
+                    new XElement(dcns + "Subject", Subject),
+                    new XElement(dcns + "Publisher", Publisher),
+                    new XElement(dcns + "Contributer", Contributor),
+                    new XElement(dcns + "Rights", Rights),
+                    new XElement(dcns + "Date", Date.ToShortDateString()),
+                    new XElement(mdns + "Size", Size.ToString(CultureInfo.InvariantCulture)),
+                    new XElement(dcns + "Type", Type)
+                )
             );
             IEnumerable<XElement> empty = from el in root.Elements()
                                           where (string) el == ""
@@ -82,6 +86,27 @@ namespace RDFGenerator
         public override String ToString()
         {
             return ToXml();
+        }
+
+        static void Main()
+        {
+            var c = new RDFMetaData();
+            c.Contributor = "contrib";
+            c.Coverage = "cover";
+            c.Creator = "creator";
+            c.Date = new DateTime(2010, 12, 23);
+            c.Description = "descr";
+            c.Format = "text/html";
+            c.Identifier = new Uri("http://www.google.com/");
+            c.Language = "en";
+            c.Publisher = "pub";
+            c.Relation = "rela";
+            c.Rights = "rights";
+            c.Size = 1022L;
+            c.Subject = "sub";
+            c.Title = "title";
+            c.Type = "type";
+            Console.Out.WriteLine(c.ToString());
         }
     }
 }

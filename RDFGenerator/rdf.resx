@@ -129,4 +129,8 @@
     <value>http://purl.org/dc/elements/1.1/</value>
     <comment>Dublin Core namespace</comment>
   </data>
+  <data name="MD_NS" xml:space="preserve">
+    <value>http://www.cs.siu.edu/~cs498/group2/md/</value>
+    <comment>Our RDF namespace.</comment>
+  </data>
 </root>
