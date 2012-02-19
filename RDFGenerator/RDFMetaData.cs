@@ -87,26 +87,5 @@ namespace RDFGenerator
         {
             return ToXml();
         }
-
-        static void Main()
-        {
-            var c = new RDFMetaData();
-            c.Contributor = "contrib";
-            c.Coverage = "cover";
-            c.Creator = "creator";
-            c.Date = new DateTime(2010, 12, 23);
-            c.Description = "descr";
-            c.Format = "text/html";
-            c.Identifier = new Uri("http://www.google.com/");
-            c.Language = "en";
-            c.Publisher = "pub";
-            c.Relation = "rela";
-            c.Rights = "rights";
-            c.Size = 1022L;
-            c.Subject = "sub";
-            c.Title = "title";
-            c.Type = "type";
-            Console.Out.WriteLine(c.ToString());
-        }
     }
 }
