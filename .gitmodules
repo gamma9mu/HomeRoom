@@ -1,0 +1,6 @@
+[submodule "Crawler"]
+	path = Crawler
+	url = git@github.com:gamma9mu/Crawler.git
+[submodule "RDFMetaData"]
+	path = RDFMetaData
+	url = git@github.com:gamma9mu/RDFMetaData.git
