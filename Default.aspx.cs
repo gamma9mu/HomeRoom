@@ -20,19 +20,13 @@ public partial class _Default : System.Web.UI.Page {
     }
 
     public void submitSurvey(object sender, EventArgs e) {
-        StudentInformation student = new StudentInformation(Int32.Parse(visualpercent.Text), Int32.Parse(auralpercent.Text), Int32.Parse(tactilepercent.Text));
+        HomeRoom.StudentInformation student =
+            new HomeRoom.StudentInformation(
+                Int32.Parse(visualpercent.Text),
+                Int32.Parse(auralpercent.Text),
+                Int32.Parse(tactilepercent.Text));
         results.Text = "submitted";
     }
 }
 
-public class StudentInformation
-{
-    int visualpercent, auralpercent, tactilepercent;
 
-    public StudentInformation(int vp, int ap, int tp)
-    {
-        visualpercent = vp;
-        auralpercent = ap;
-        tactilepercent = tp;
-    }
-}
