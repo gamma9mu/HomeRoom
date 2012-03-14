@@ -1,0 +1,67 @@
+﻿#surveyform {
+}
+
+.prompt {
+}
+
+.options {
+    margin-bottom: 20px;
+}
+
+body {
+	margin: 0;
+	padding: 20px;
+	background-color: gray;
+	background-image: url("tiled2.png");
+	background-repeat: repeat;
+	font-family: sans-serif;
+}
+
+#container {
+	margin: auto;
+	padding: 20px;
+	max-width: 800px;
+	min-width: 600px;
+	background-color: white;
+	border: 2px solid #ccc;
+}
+
+#content {
+	margin-left: 50px;
+	padding: 0 20px;
+	height: 100%;
+	border-left: 1px solid #ddd;
+}
+
+header#title {
+	margin-bottom: 20px;
+	padding: 0;
+	text-align: center;
+}
+
+h1 {
+	margin: 0;
+	padding: 0;
+	font-family: "Ubuntu", sans-serif;
+	font-size: 48pt;
+}
+
+h2 {
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+	margin: 0 auto;
+	padding: 0;
+	width: 100%;
+	background-color: #ddd;
+}
+
+h6 {
+	margin-top: 20px;
+	margin-bottom: 0;
+	padding: 0;
+	text-align: right;
+	color: #aaa;
+}
