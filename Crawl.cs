@@ -4,7 +4,7 @@ using System.Net;
 using System.Text;
 using System.Xml;
 
-class Crawl
+public class Crawl
 {
     /// sources and query are to be filled with input from heuristics gathering
 
