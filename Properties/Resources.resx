@@ -125,4 +125,8 @@
     <value>http://api.bing.net/xml.aspx?Appid={0}&amp;sources={1}&amp;query={2}</value>
     <comment>The generic url for querying</comment>
   </data>
+  <data name="webSchema" xml:space="preserve">
+    <value>http://schemas.microsoft.com/LiveSearch/2008/04/XML/web</value>
+    <comment>XML Schema for web prefix in result sets.</comment>
+  </data>
 </root>

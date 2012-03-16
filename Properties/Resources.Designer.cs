@@ -77,5 +77,14 @@ namespace Crawler.Properties {
                 return ResourceManager.GetString("SearchUrl", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://schemas.microsoft.com/LiveSearch/2008/04/XML/web.
+        /// </summary>
+        internal static string webSchema {
+            get {
+                return ResourceManager.GetString("webSchema", resourceCulture);
+            }
+        }
     }
 }
