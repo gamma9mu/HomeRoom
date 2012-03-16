@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RDFGenerator {
+namespace HomeRoom {
     using System;
     
     
