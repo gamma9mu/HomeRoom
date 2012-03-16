@@ -10,14 +10,14 @@ namespace HomeRoom
         public string Title { get; private set; }
         public string Description { get; private set; }
         public DateTime Datetime { get; private set; }
-        public string Url { get; private set; }
+        public Uri Url { get; private set; }
 
         public Result(string title, string description, DateTime datetime, string url)
         {
             Title = title;
             Description = description;
             Datetime = datetime;
-            Url = url;
+            Url = new Uri(url);
         }
 
         public override string ToString()
