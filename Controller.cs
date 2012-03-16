@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Net;
+using System.IO;
 
 namespace HomeRoom
 {
@@ -34,10 +36,8 @@ namespace HomeRoom
         /// <param name="request"></param>
         public void addRequest(Request request)
         {
-            if (! ThreadPool.QueueUserWorkItem(new WaitCallback(processRequest), request))
-            {
-                enqueueRequest(request);
-            }
+            Thread t = new Thread(processRequest);
+            t.Start(request);
         }
 
         /// <summary>
@@ -72,7 +72,48 @@ namespace HomeRoom
         static void processRequest(Object state)
         {
             Request request = (Request) state;
-            // Crawl here
+            if (request == null) return;
+
+            Crawler c = new Crawler();
+            RdfFile rdf = new RdfFile();
+            List<Result> results = c.find(request.topic);
+            foreach (Result r in results)
+            {
+                RDFMetaData rdfmd = new RDFMetaData();
+                rdfmd.Subject = request.topic;
+                rdfmd.Title = r.Title;
+                rdfmd.Description = r.Description;
+                rdfmd.Date = r.Datetime;
+                rdfmd.Identifier = r.Url;
+
+                // Use header info from an HTTP HEAD request to fill in some more metadata
+                HttpWebRequest req = (HttpWebRequest) WebRequest.Create(r.Url);
+                req.Method = "HEAD";
+                HttpWebResponse resp = (HttpWebResponse) req.GetResponse();
+                if (resp.StatusCode == HttpStatusCode.OK)
+                {
+                    if (resp.LastModified != null) rdfmd.Date = resp.LastModified;
+                    if (resp.ContentType != null) rdfmd.Format = resp.ContentType;
+                    if (resp.ContentLength > 0) rdfmd.Size = resp.ContentLength;
+                }
+
+                rdf.addDescription(rdfmd.getDescription());
+            }
+
+            StreamWriter fw = new StreamWriter(controller.ouputDirectory
+                            + DateTime.UtcNow.ToFileTimeUtc().ToString()
+                            + controller.outputFileSuffix);
+            fw.AutoFlush = true;
+            rdf.Save(fw);
+        }
+
+        public static void Main(string[] args)
+        {
+            string topic = "jim jones";
+            StudentInformation si = new StudentInformation(37, 46, 17);
+            Request r = new Request(si, topic, 1500000);
+            Controller c = new Controller();
+            c.addRequest(r);
         }
     }
 }
