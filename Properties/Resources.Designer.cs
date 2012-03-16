@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Crawler.Properties {
+namespace HomeRoom.Properties {
     using System;
     
     

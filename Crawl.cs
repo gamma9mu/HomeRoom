@@ -7,9 +7,9 @@ using System.Web;
 using System.Xml;
 using System.Xml.XPath;
 
-namespace Crawler
+namespace HomeRoom
 {
-    public class Crawl
+    public class Crawler
     {
         /// XML namespace lookup aide.
         private XmlNamespaceManager nsmgr = null;
