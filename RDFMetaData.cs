@@ -73,17 +73,15 @@ namespace HomeRoom
                     new XElement(dcns + "Type", Type)
                 )
             );
-            IEnumerable<XElement> empty = from el in root.Elements()
-                                          where (string) el == ""
-                                          select el;
-            foreach (XElement emptyNode in empty)
-            {
-                emptyNode.Remove();
-            }
+
+            // Remove empty and Size==0 tags.
+            root.Descendants().Where(x => x.IsEmpty).Remove();
+            root.Descendants(mdns + "Size").Where(x => x.Value == "0").Remove();
+            
             return root.ToString();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             return ToXml();
         }
