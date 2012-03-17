@@ -74,9 +74,11 @@ namespace HomeRoom
             Request request = (Request) state;
             if (request == null) return;
 
-            Crawler c = new Crawler();
             RdfFile rdf = new RdfFile();
-            List<Result> results = c.find(request.topic);
+
+            RequestRunner rr = new RequestRunner(request);
+            List<Result> results = rr.retrieveItems();
+
             foreach (Result r in results)
             {
                 RDFMetaData rdfmd = new RDFMetaData();
@@ -109,7 +111,7 @@ namespace HomeRoom
 
         public static void Main(string[] args)
         {
-            string topic = "jim jones";
+            string topic = "johnny carson";
             StudentInformation si = new StudentInformation(37, 46, 17);
             Request r = new Request(si, topic, 1500000);
             Controller c = new Controller();
