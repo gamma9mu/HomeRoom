@@ -8,7 +8,7 @@
     <ProjectGuid>{00D36642-3203-4576-A131-6A3EC0B0A1B9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Crawler</RootNamespace>
+    <RootNamespace>HomeRoom</RootNamespace>
     <AssemblyName>Crawler</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
