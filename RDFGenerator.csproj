@@ -8,7 +8,7 @@
     <ProjectGuid>{F68FD145-798A-40DF-BD7E-F5239F99FD29}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RDFGenerator</RootNamespace>
+    <RootNamespace>HomeRoom</RootNamespace>
     <AssemblyName>RDFGenerator</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HttpMetaData.cs" />
     <Compile Include="RdfFile.cs" />
     <Compile Include="RDFMetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
