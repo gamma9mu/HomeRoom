@@ -88,16 +88,8 @@ namespace HomeRoom
                 rdfmd.Date = r.Datetime;
                 rdfmd.Identifier = r.Url;
 
-                // Use header info from an HTTP HEAD request to fill in some more metadata
-                HttpWebRequest req = (HttpWebRequest) WebRequest.Create(r.Url);
-                req.Method = "HEAD";
-                HttpWebResponse resp = (HttpWebResponse) req.GetResponse();
-                if (resp.StatusCode == HttpStatusCode.OK)
-                {
-                    if (resp.LastModified != null) rdfmd.Date = resp.LastModified;
-                    if (resp.ContentType != null) rdfmd.Format = resp.ContentType;
-                    if (resp.ContentLength > 0) rdfmd.Size = resp.ContentLength;
-                }
+                HttpMetaData httpmd = new HttpMetaData(rdfmd);
+                httpmd.addMetaData();
 
                 rdf.addDescription(rdfmd.getDescription());
             }
