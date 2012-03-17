@@ -61,7 +61,7 @@ namespace HomeRoom {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to c:\.
+        ///   Looks up a localized string similar to c:\HomeRoom\.
         /// </summary>
         internal static string ouputDirectory {
             get {
