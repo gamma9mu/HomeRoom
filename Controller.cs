@@ -102,9 +102,9 @@ namespace HomeRoom
                 rdf.addDescription(rdfmd.getDescription());
             }
 
-            StreamWriter fw = new StreamWriter(controller.ouputDirectory
+            StreamWriter fw = new StreamWriter(ControllerConfig.ouputDirectory
                             + DateTime.UtcNow.ToFileTimeUtc().ToString()
-                            + controller.outputFileSuffix);
+                            + ControllerConfig.outputFileSuffix);
             fw.AutoFlush = true;
             rdf.Save(fw);
         }
