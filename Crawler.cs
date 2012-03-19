@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -25,7 +25,7 @@ namespace HomeRoom
         ///     <li><code>"Web"</code> for website results (default).</li>
         /// </ul></param>
         /// <returns>A <code>List&lt;Result&gt;</code> of the results found by Bing.</returns>
-        public List<Result> find(string query, string sources = "Web")
+        public List<Result> findWeb(string query, string sources = "Web")
         {
             string completeUri = String.Format(Properties.Resources.SearchUrl,
                 Properties.Resources.AppId, sources, HttpUtility.UrlEncode(query));
@@ -51,7 +51,37 @@ namespace HomeRoom
             // Return the search results
             List<Result> results = new List<Result>(10);
             while (iter.MoveNext())
-                results.Add(createResultFromXml(iter));
+                results.Add(createWebResultFromXml(iter));
+            return results;
+        }
+
+        public List<Result> findImage(string query, string sources = "Image")
+        {
+            string completeUri = String.Format(Properties.Resources.SearchUrl,
+                Properties.Resources.AppId, sources, HttpUtility.UrlEncode(query));
+            HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(completeUri);
+            HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse();
+            XmlReader reader = XmlReader.Create(webResponse.GetResponseStream());
+
+            // The namespace manager is needed to handle XML prefixes in the results
+            nsmgr = new XmlNamespaceManager(reader.NameTable);
+            nsmgr.AddNamespace("mms", Properties.Resources.imageSchema);
+
+            XPathDocument doc = new XPathDocument(reader);
+            XPathNavigator nav = doc.CreateNavigator();
+
+            // Check for errors
+            XPathNodeIterator err = (XPathNodeIterator)nav.Evaluate("//Errors", nsmgr);
+            if (err == null) return null; // TODO log this
+
+            // Find the results
+            XPathNodeIterator iter = (XPathNodeIterator)nav.Evaluate("//mms:ImageResult", nsmgr);
+            if (iter == null) return null;
+
+            // Return the search results
+            List<Result> results = new List<Result>(10);
+            while (iter.MoveNext())
+                results.Add(createImageResultFromXml(iter));
             return results;
         }
 
@@ -62,7 +92,7 @@ namespace HomeRoom
         /// <param name="iterator">An <code>XPathNodeIterator</code> pointing to a
         /// <code>web:WebResult</code> in Bing's response.</param>
         /// <returns>A <code>Result</code> object with the read data.</returns>
-        private Result createResultFromXml(XPathNodeIterator iterator)
+        private Result createWebResultFromXml(XPathNodeIterator iterator)
         {
             XPathNavigator iter = iterator.Current;
             // nav will be reused as a temporary throughout this section to handle
@@ -82,11 +112,32 @@ namespace HomeRoom
             return new Result(title, description, datetime, url);
         }
 
+        private Result createImageResultFromXml(XPathNodeIterator iterator)
+        {
+            XPathNavigator iter = iterator.Current;
+            // nav will be reused as a temporary throughout this section to handle
+            // null results without throwing a NullReferenceException.  Pardon the ternaries...
+            XPathNavigator nav = iter.SelectSingleNode("mms:Title", nsmgr);
+            string title = (nav != null) ? nav.InnerXml : null;
+
+            //nav = iter.SelectSingleNode("mms:Description", nsmgr);
+            //string description = (nav != null) ? nav.InnerXml : null;
+            string description = "picture";
+
+            nav = iter.SelectSingleNode("mms:DateTime", nsmgr);
+            DateTime datetime = (nav != null) ? DateTime.Parse(nav.InnerXml) : DateTime.UtcNow;
+            nav = iter.SelectSingleNode("mms:MediaUrl", nsmgr);
+            string url = (nav != null) ? nav.InnerXml : null;
+
+            //Console.Out.WriteLine(dt.ToString());
+            return new Result(title, description, datetime, url);
+        }
+
         // testing main()
         static void Main(string[] args)
         {
             Crawler c = new Crawler();
-            foreach (var item in c.find("cool+stuff"))
+            foreach (var item in c.findImage("cool+stuff"))
                 Console.Out.WriteLine(item);
         }
     }
