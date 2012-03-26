@@ -45,10 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BingCrawler.cs" />
     <Compile Include="BingWebCrawler.cs" />
     <Compile Include="ICrawler.cs" />
     <Compile Include="Result.cs" />
-    <Compile Include="Crawler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
