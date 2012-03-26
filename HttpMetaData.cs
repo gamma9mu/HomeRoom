@@ -38,6 +38,7 @@ namespace HomeRoom
 
         private void retrieveHeadResponse()
         {
+            if (metadata.Identifier == null) return; // cannot lookup without an address
             HttpWebRequest req = (HttpWebRequest) WebRequest.Create(metadata.Identifier);
             req.Method = "HEAD";
 

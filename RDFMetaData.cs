@@ -36,7 +36,7 @@ namespace HomeRoom
             XNamespace mdns = rdf.MD_NS;
             var root = new XElement(
                 rdfns + "Description",
-                new XAttribute(rdfns + "about", Identifier.ToString()),
+                new XAttribute(rdfns + "about", (isValid()) ? Identifier.ToString() : ""),
                 new XElement(dcns + "Title", Title),
                 new XElement(dcns + "Description", Description),
                 new XElement(dcns + "Format", Format),
@@ -58,6 +58,11 @@ namespace HomeRoom
             root.Descendants(mdns + "Size").Where(x => x.Value == "0").Remove();
             
             return root;
+        }
+
+        public bool isValid()
+        {
+            return Identifier != null;
         }
 
         public override string ToString()
