@@ -34,7 +34,7 @@ namespace HomeRoom
         /// <returns>A fresh BingAudioCrawler</returns>
         public ICrawler createAudioCrawler()
         {
-            throw new NotImplementedException("Coming soon...");
+            return new NoopCrawler();
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace HomeRoom
         /// <returns>A fresh BingVideoCrawler</returns>
         public ICrawler createVideoCrawler()
         {
-            throw new NotImplementedException("Coming soon...");
+            return new NoopCrawler();
         }
     }
 }
