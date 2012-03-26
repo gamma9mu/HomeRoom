@@ -17,7 +17,8 @@ namespace HomeRoom
             Title = title;
             Description = description;
             Datetime = datetime;
-            Url = new Uri(url);
+            if (url != null)
+                Url = new Uri(url);
         }
 
         public override string ToString()
