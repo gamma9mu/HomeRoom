@@ -9,7 +9,7 @@ using System.Xml.XPath;
 
 namespace HomeRoom
 {
-    public abstract class BingCrawler : ICrawler
+    abstract class BingCrawler : ICrawler
     {
         /// XML namespace lookup aide.
         protected XmlNamespaceManager nsmgr = null;
