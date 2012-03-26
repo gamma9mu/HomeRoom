@@ -129,7 +129,7 @@
     <value>http://schemas.microsoft.com/LiveSearch/2008/04/XML/web</value>
     <comment>XML Schema for web prefix in result sets.</comment>
   </data>
-  <data name="imageSchema" xml"space="preserve">
+  <data name="imageSchema" xml:space="preserve">
     <value>http://schemas.microsoft.com/LiveSearch/2008/04/XML/multimedia</value>
     <comment>XML Schema for mms prefix in result sets.</comment>
   </data>

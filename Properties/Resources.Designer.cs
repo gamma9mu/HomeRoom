@@ -70,6 +70,15 @@ namespace HomeRoom.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://schemas.microsoft.com/LiveSearch/2008/04/XML/multimedia.
+        /// </summary>
+        internal static string imageSchema {
+            get {
+                return ResourceManager.GetString("imageSchema", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://api.bing.net/xml.aspx?Appid={0}&amp;sources={1}&amp;query={2}.
         /// </summary>
         internal static string SearchUrl {
