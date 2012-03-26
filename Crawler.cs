@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -9,51 +9,22 @@ using System.Xml.XPath;
 
 namespace HomeRoom
 {
-    public class Crawler
+    public abstract class BingCrawler : ICrawler
     {
         /// XML namespace lookup aide.
-        private XmlNamespaceManager nsmgr = null;
+        protected XmlNamespaceManager nsmgr = null;
+        /// <summary>
+        /// An enumeration of the different data elements that can be found in
+        /// a result set.
+        /// </summary>
+        protected enum DATATYPES { TITLE, DESCRIPTION, DATETIME, URL };
 
         /// <summary>
-        /// Search Bing for web resources.
+        /// From ICrawler
         /// </summary>
-        /// <param name="query">A search query word or phrase to use as the keywords in the
-        /// web search.</param>
-        /// <param name="sources">The type of search to perform as a string-keyword.
-        /// Available options are:
-        /// <ul>
-        ///     <li><code>"Web"</code> for website results (default).</li>
-        /// </ul></param>
-        /// <returns>A <code>List&lt;Result&gt;</code> of the results found by Bing.</returns>
-        public List<Result> findWeb(string query, string sources = "Web")
-        {
-            string completeUri = String.Format(Properties.Resources.SearchUrl,
-                Properties.Resources.AppId, sources, HttpUtility.UrlEncode(query));
-            HttpWebRequest webRequest = (HttpWebRequest) WebRequest.Create(completeUri);
-            HttpWebResponse webResponse = (HttpWebResponse) webRequest.GetResponse();
-            XmlReader reader = XmlReader.Create(webResponse.GetResponseStream());
-
-            // The namespace manager is needed to handle XML prefixes in the results
-            nsmgr = new XmlNamespaceManager(reader.NameTable);
-            nsmgr.AddNamespace("web", Properties.Resources.webSchema);
-
-            XPathDocument doc = new XPathDocument(reader);
-            XPathNavigator nav = doc.CreateNavigator();
-
-            // Check for errors
-            XPathNodeIterator err = (XPathNodeIterator) nav.Evaluate("//Errors", nsmgr);
-            if (err == null) return null; // TODO log this
-
-            // Find the results
-            XPathNodeIterator iter = (XPathNodeIterator) nav.Evaluate("//web:WebResult", nsmgr);
-            if (iter == null) return null;
-
-            // Return the search results
-            List<Result> results = new List<Result>(10);
-            while (iter.MoveNext())
-                results.Add(createWebResultFromXml(iter));
-            return results;
-        }
+        /// <param name="query">A search string.</param>
+        /// <returns>The results of a Bing search.</returns>
+        abstract public List<Result> find(string query);
 
         public List<Result> findImage(string query, string sources = "Image")
         {
@@ -91,22 +62,51 @@ namespace HomeRoom
         /// </summary>
         /// <param name="iterator">An <code>XPathNodeIterator</code> pointing to a
         /// <code>web:WebResult</code> in Bing's response.</param>
+        /// <param name="xmlNamespace">The XML namespace that the result tags use.</param>
+        /// <param name="mapping">A Dictionary mapping the <code>DATATYPE</code>s above
+        /// to XML element names (of the namespace <code>namespace</code> above) in the
+        /// results.</param>
         /// <returns>A <code>Result</code> object with the read data.</returns>
-        private Result createWebResultFromXml(XPathNodeIterator iterator)
+        protected Result createResultFromXml(XPathNodeIterator iterator, string xmlNamespace,
+            Dictionary<DATATYPES, string> mapping)
         {
             XPathNavigator iter = iterator.Current;
             // nav will be reused as a temporary throughout this section to handle
             // null results without throwing a NullReferenceException.  Pardon the ternaries...
-            XPathNavigator nav = iter.SelectSingleNode("web:Title", nsmgr);
-            string title = (nav != null) ? nav.InnerXml : null;
+            XPathNavigator nav;
+
+            string title = null;
+            if (mapping.ContainsKey(DATATYPES.TITLE))
+            {
+                nav = iter.SelectSingleNode(xmlNamespace + ":" + mapping[DATATYPES.TITLE], nsmgr);
+                if (nav != null)
+                    title = nav.InnerXml;
+            }
+
+            string description = null;
+            if (mapping.ContainsKey(DATATYPES.DESCRIPTION))
+            {
+                nav = iter.SelectSingleNode(xmlNamespace + ":" + mapping[DATATYPES.DESCRIPTION], nsmgr);
+                if (nav != null)
+                    description = nav.InnerXml;
+            }
+
+            DateTime datetime = DateTime.UtcNow;
+            if (mapping.ContainsKey(DATATYPES.DATETIME))
+            {
+                nav = iter.SelectSingleNode(xmlNamespace + ":" + mapping[DATATYPES.DATETIME], nsmgr);
+                if (nav != null) 
+                    datetime = DateTime.Parse(nav.InnerXml);
+            }
             
-            nav = iter.SelectSingleNode("web:Description", nsmgr);
-            string description = (nav != null) ? nav.InnerXml : null;
-            
-            nav = iter.SelectSingleNode("web:DateTime", nsmgr);
-            DateTime datetime = (nav != null) ? DateTime.Parse(nav.InnerXml) : DateTime.UtcNow;
-            nav = iter.SelectSingleNode("web:Url", nsmgr);
-            string url = (nav != null) ? nav.InnerXml : null;
+
+            string url = null;
+            if (mapping.ContainsKey(DATATYPES.URL))
+            {
+                nav = iter.SelectSingleNode(xmlNamespace + ":" + mapping[DATATYPES.URL], nsmgr);
+                if (nav != null) 
+                    url = nav.InnerXml;
+            }
             
             //Console.Out.WriteLine(dt.ToString());
             return new Result(title, description, datetime, url);
@@ -136,7 +136,7 @@ namespace HomeRoom
         // testing main()
         static void Main(string[] args)
         {
-            Crawler c = new Crawler();
+            BingCrawler c = new BingWebCrawler();
             foreach (var item in c.findImage("cool+stuff"))
                 Console.Out.WriteLine(item);
         }
