@@ -25,8 +25,12 @@ namespace HomeRoom
         public List<Result> retrieveItems()
         {
             preFilter();
-            Crawler c = new Crawler();
+            Bing bing = new Bing();
+            ICrawler c = bing.createWebCrawler();
             List<Result> results = c.find(request.topic);
+
+            c = bing.createImageCrawler();
+            results.AddRange(c.find(request.topic));
 
             return results;
         }
