@@ -13,6 +13,7 @@ namespace HomeRoom
     {
         /// XML namespace lookup aide.
         protected XmlNamespaceManager nsmgr = null;
+
         /// <summary>
         /// An enumeration of the different data elements that can be found in
         /// a result set.
@@ -25,36 +26,6 @@ namespace HomeRoom
         /// <param name="query">A search string.</param>
         /// <returns>The results of a Bing search.</returns>
         abstract public List<Result> find(string query);
-
-        public List<Result> findImage(string query, string sources = "Image")
-        {
-            string completeUri = String.Format(Properties.Resources.SearchUrl,
-                Properties.Resources.AppId, sources, HttpUtility.UrlEncode(query));
-            HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(completeUri);
-            HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse();
-            XmlReader reader = XmlReader.Create(webResponse.GetResponseStream());
-
-            // The namespace manager is needed to handle XML prefixes in the results
-            nsmgr = new XmlNamespaceManager(reader.NameTable);
-            nsmgr.AddNamespace("mms", Properties.Resources.imageSchema);
-
-            XPathDocument doc = new XPathDocument(reader);
-            XPathNavigator nav = doc.CreateNavigator();
-
-            // Check for errors
-            XPathNodeIterator err = (XPathNodeIterator)nav.Evaluate("//Errors", nsmgr);
-            if (err == null) return null; // TODO log this
-
-            // Find the results
-            XPathNodeIterator iter = (XPathNodeIterator)nav.Evaluate("//mms:ImageResult", nsmgr);
-            if (iter == null) return null;
-
-            // Return the search results
-            List<Result> results = new List<Result>(10);
-            while (iter.MoveNext())
-                results.Add(createImageResultFromXml(iter));
-            return results;
-        }
 
         /// <summary>
         /// Create a <code>Result</code> object from the current result in the Bing XML
@@ -99,7 +70,6 @@ namespace HomeRoom
                     datetime = DateTime.Parse(nav.InnerXml);
             }
             
-
             string url = null;
             if (mapping.ContainsKey(DATATYPES.URL))
             {
@@ -110,35 +80,6 @@ namespace HomeRoom
             
             //Console.Out.WriteLine(dt.ToString());
             return new Result(title, description, datetime, url);
-        }
-
-        private Result createImageResultFromXml(XPathNodeIterator iterator)
-        {
-            XPathNavigator iter = iterator.Current;
-            // nav will be reused as a temporary throughout this section to handle
-            // null results without throwing a NullReferenceException.  Pardon the ternaries...
-            XPathNavigator nav = iter.SelectSingleNode("mms:Title", nsmgr);
-            string title = (nav != null) ? nav.InnerXml : null;
-
-            //nav = iter.SelectSingleNode("mms:Description", nsmgr);
-            //string description = (nav != null) ? nav.InnerXml : null;
-            string description = "picture";
-
-            nav = iter.SelectSingleNode("mms:DateTime", nsmgr);
-            DateTime datetime = (nav != null) ? DateTime.Parse(nav.InnerXml) : DateTime.UtcNow;
-            nav = iter.SelectSingleNode("mms:MediaUrl", nsmgr);
-            string url = (nav != null) ? nav.InnerXml : null;
-
-            //Console.Out.WriteLine(dt.ToString());
-            return new Result(title, description, datetime, url);
-        }
-
-        // testing main()
-        static void Main(string[] args)
-        {
-            BingCrawler c = new BingWebCrawler();
-            foreach (var item in c.findImage("cool+stuff"))
-                Console.Out.WriteLine(item);
         }
     }
 }

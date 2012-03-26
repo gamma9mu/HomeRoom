@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BingCrawler.cs" />
+    <Compile Include="BingImageCrawler.cs" />
     <Compile Include="BingWebCrawler.cs" />
     <Compile Include="ICrawler.cs" />
     <Compile Include="Result.cs" />
