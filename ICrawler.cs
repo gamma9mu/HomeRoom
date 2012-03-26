@@ -10,6 +10,6 @@ namespace HomeRoom
     /// </summary>
     interface ICrawler
     {
-        public List<Result> find(string query);
+        List<Result> find(string query);
     }
 }
