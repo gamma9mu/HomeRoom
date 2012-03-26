@@ -78,7 +78,6 @@ namespace HomeRoom
                     url = nav.InnerXml;
             }
             
-            //Console.Out.WriteLine(dt.ToString());
             return new Result(title, description, datetime, url);
         }
     }
