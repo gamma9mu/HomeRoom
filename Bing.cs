@@ -8,13 +8,13 @@ namespace HomeRoom
     /// <summary>
     /// Factory class for Bing searches.
     /// </summary>
-    public static class Bing : ISearchFactory
+    public class Bing : ISearchFactory
     {
         /// <summary>
         /// Get a BingWebCrawler.
         /// </summary>
         /// <returns>A fresh BingWebCrawler</returns>
-        public static ICrawler createWebCrawler()
+        public ICrawler createWebCrawler()
         {
             return new BingWebCrawler();
         }
@@ -23,17 +23,25 @@ namespace HomeRoom
         /// Get a BingImageCrawler.
         /// </summary>
         /// <returns>A fresh BingImageCrawler</returns>
-        public static ICrawler createImageCrawler()
+        public ICrawler createImageCrawler()
         {
             return new BingImageCrawler();
         }
 
-        public static ICrawler createAudioCrawler()
+        /// <summary>
+        /// Get a BingAudioCrawler.
+        /// </summary>
+        /// <returns>A fresh BingAudioCrawler</returns>
+        public ICrawler createAudioCrawler()
         {
             throw new NotImplementedException("Coming soon...");
         }
 
-        public static ICrawler createVideoCrawler()
+        /// <summary>
+        /// Get a BingVideoCrawler.
+        /// </summary>
+        /// <returns>A fresh BingVideoCrawler</returns>
+        public ICrawler createVideoCrawler()
         {
             throw new NotImplementedException("Coming soon...");
         }

@@ -8,7 +8,7 @@ namespace HomeRoom
     /// <summary>
     /// Provide a common interface for different content crawlers.
     /// </summary>
-    interface ICrawler
+    public interface ICrawler
     {
         List<Result> find(string query);
     }

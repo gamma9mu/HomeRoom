@@ -10,9 +10,9 @@ namespace HomeRoom
     /// </summary>
     public interface ISearchFactory
     {
-        static ICrawler createWebCrawler();
-        static ICrawler createImageCrawler();
-        static ICrawler createAudioCrawler();
-        static ICrawler createVideoCrawler();
+        ICrawler createWebCrawler();
+        ICrawler createImageCrawler();
+        ICrawler createAudioCrawler();
+        ICrawler createVideoCrawler();
     }
 }
