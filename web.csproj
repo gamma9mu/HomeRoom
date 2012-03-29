@@ -52,9 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
-    <Content Include="questions.xml" />
+    <Content Include="fonts\PrintClearly-webfont.svg" />
     <Content Include="style.css" />
-    <Content Include="tiled2.png" />
+    <Content Include="tile.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +69,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fonts\PrintClearly-webfont.eot" />
+    <None Include="fonts\PrintClearly-webfont.ttf" />
+    <None Include="fonts\PrintClearly-webfont.woff" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

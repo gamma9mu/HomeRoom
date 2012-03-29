@@ -4,29 +4,24 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml;
 using System.Collections;
 
-public partial class _Default : System.Web.UI.Page {
-    protected void Page_Load(object sender, EventArgs e) {
-        if (Page.IsPostBack)
-        {
-            results.Visible = true;
-        }
-        else
-        {
-            results.Visible = false;
-        }
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
     }
 
-    public void submitSurvey(object sender, EventArgs e) {
+    public void submitSurvey(object sender, EventArgs e)
+    {
         HomeRoom.StudentInformation student =
             new HomeRoom.StudentInformation(
-                Int32.Parse(visualpercent.Text),
-                Int32.Parse(auralpercent.Text),
-                Int32.Parse(tactilepercent.Text));
-        results.Text = "submitted";
+                Int32.Parse(visual.Text),
+                Int32.Parse(aural.Text),
+                Int32.Parse(tactile.Text));
+
+        surveyform.Visible = false;
+        results.Text = "Submission successful";
     }
 }
-
-

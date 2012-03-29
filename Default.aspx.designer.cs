@@ -12,6 +12,15 @@
 public partial class _Default {
     
     /// <summary>
+    /// Head1 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+    
+    /// <summary>
     /// surveyform control.
     /// </summary>
     /// <remarks>
@@ -21,13 +30,13 @@ public partial class _Default {
     protected global::System.Web.UI.HtmlControls.HtmlForm surveyform;
     
     /// <summary>
-    /// visualpercent control.
+    /// visual control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.TextBox visualpercent;
+    protected global::System.Web.UI.WebControls.TextBox visual;
     
     /// <summary>
     /// visualvalidator control.
@@ -48,13 +57,13 @@ public partial class _Default {
     protected global::System.Web.UI.WebControls.RangeValidator visualrangevalidator;
     
     /// <summary>
-    /// auralpercent control.
+    /// aural control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.TextBox auralpercent;
+    protected global::System.Web.UI.WebControls.TextBox aural;
     
     /// <summary>
     /// auralvalidator control.
@@ -75,13 +84,13 @@ public partial class _Default {
     protected global::System.Web.UI.WebControls.RangeValidator auralrangevalidator;
     
     /// <summary>
-    /// tactilepercent control.
+    /// tactile control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.TextBox tactilepercent;
+    protected global::System.Web.UI.WebControls.TextBox tactile;
     
     /// <summary>
     /// tactilevalidator control.
