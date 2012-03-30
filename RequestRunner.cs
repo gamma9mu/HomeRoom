@@ -27,10 +27,10 @@ namespace HomeRoom
             preFilter();
             Bing bing = new Bing();
             ICrawler c = bing.createWebCrawler();
-            List<Result> results = c.find(request.topic);
+            List<Result> results = c.find(request.topic, webCount);
 
             c = bing.createImageCrawler();
-            results.AddRange(c.find(request.topic));
+            results.AddRange(c.find(request.topic, imageCount));
 
             return results;
         }
