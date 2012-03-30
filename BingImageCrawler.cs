@@ -29,16 +29,13 @@ namespace HomeRoom
 
             if (offset < OFFSET_MIN) offset = OFFSET_MIN;
             else if (offset > OFFSET_MAX) offset = OFFSET_MAX;
-            Console.Out.WriteLine();
+
             string completeUri = String.Format(Properties.Resources.SearchUrl,
                 Properties.Resources.AppId, sources, HttpUtility.UrlEncode(query),
                 offset, count);
             HttpWebRequest webRequest = (HttpWebRequest) WebRequest.Create(completeUri);
             HttpWebResponse webResponse = (HttpWebResponse) webRequest.GetResponse();
-            //string webResponse2 = new System.IO.StreamReader(webResponse.GetResponseStream(), Encoding.UTF8).ReadToEnd();
             XmlReader reader = XmlReader.Create(webResponse.GetResponseStream());
-            //Console.Out.WriteLine(webResponse2);
-            //XmlReader reader = XmlReader.Create(webResponse2);
 
             // The namespace manager is needed to handle XML prefixes in the results
             nsmgr = new XmlNamespaceManager(reader.NameTable);
