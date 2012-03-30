@@ -34,6 +34,15 @@ namespace HomeRoom
                 if (headResponse.ContentType != null) metadata.Format = headResponse.ContentType;
                 if (headResponse.ContentLength > 0) metadata.Size = headResponse.ContentLength;
             }
+            else if (
+              headResponse.StatusCode == HttpStatusCode.BadRequest ||
+              headResponse.StatusCode == HttpStatusCode.Forbidden ||
+              headResponse.StatusCode == HttpStatusCode.Gone ||
+              headResponse.StatusCode == HttpStatusCode.NotFound ||
+              headResponse.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                metadata.clear();
+            }
         }
 
         private void retrieveHeadResponse()

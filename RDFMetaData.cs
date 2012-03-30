@@ -9,6 +9,8 @@ namespace HomeRoom
 {
     public class RDFMetaData
     {
+        private bool cleared = false;
+
         public String Title { get; set; } // A name
         public String Creator { get; set; } // Primary "maker"
         public String Subject { get; set; } // Topic
@@ -29,8 +31,15 @@ namespace HomeRoom
         public String Rights { get; set; } //  IP info
         public long Size { get; set; } // File size in bytes
 
+        /// <summary>
+        /// Obtain an XML representation of the metadata.
+        /// </summary>
+        /// <returns>An <code>XElement</code> created with the metadata mapped
+        /// to Dublin Core RDF.</returns>
         public XElement getDescription()
         {
+            if (cleared) return new XElement("");
+
             XNamespace rdfns = rdf.RDF_NS;
             XNamespace dcns = rdf.DC_NS;
             XNamespace mdns = rdf.MD_NS;
@@ -60,9 +69,27 @@ namespace HomeRoom
             return root;
         }
 
+        /// <summary>
+        /// Clear the metadata set.
+        ///
+        /// This is useful if, for instance, attempting to retrieve the resource
+        /// fails because it does not exist.  If this has been called, getDescription()
+        /// will return an empty XElement.
+        ///
+        /// Individual properties on the object will remain accessible so that the
+        /// application can attempt to recover the information.
+        ///
+        /// N.B.: THIS IS NOT REVERSIBLE!  Once this method has been called, it cannot
+        /// be undone.
+        /// </summary>
+        public void clear()
+        {
+            cleared = true;
+        }
+
         public bool isValid()
         {
-            return Identifier != null;
+            return !cleared && Identifier != null;
         }
 
         public override string ToString()
