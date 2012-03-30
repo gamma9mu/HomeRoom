@@ -79,7 +79,7 @@ namespace HomeRoom.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://api.bing.net/xml.aspx?Appid={0}&amp;sources={1}&amp;query={2}.
+        ///   Looks up a localized string similar to http://api.bing.net/xml.aspx?Appid={0}&amp;sources={1}&amp;query={2}&amp;{1}.offset={3}&amp;{1}.count={4}.
         /// </summary>
         internal static string SearchUrl {
             get {

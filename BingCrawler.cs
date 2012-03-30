@@ -11,6 +11,30 @@ namespace HomeRoom
 {
     public abstract class BingCrawler : ICrawler
     {
+        /// <summary>
+        /// The minimum value for the count parameter in a search as specified
+        /// on MSDN.
+        /// </summary>
+        protected int COUNT_MIN = 1;
+
+        /// <summary>
+        /// The maximum value for the count parameter in a search as specified
+        /// on MSDN.
+        /// </summary>
+        protected int COUNT_MAX = 50;
+
+        /// <summary>
+        /// The minimum value for the offset parameter in a search as specified
+        /// on MSDN.
+        /// </summary>
+        protected int OFFSET_MIN = 0;
+
+        /// <summary>
+        /// The maximum value for the offset parameter in a search as specified
+        /// on MSDN.
+        /// </summary>
+        protected int OFFSET_MAX = 1000;
+
         /// XML namespace lookup aide.
         protected XmlNamespaceManager nsmgr = null;
 
@@ -21,11 +45,43 @@ namespace HomeRoom
         protected enum DATATYPES { TITLE, DESCRIPTION, DATETIME, URL };
 
         /// <summary>
-        /// From ICrawler
+        /// Search Bing for resources of a given type.  Subclasses specify the
+        /// actual type of resource to retrieve.
         /// </summary>
-        /// <param name="query">A search string.</param>
-        /// <returns>The results of a Bing search.</returns>
-        abstract public List<Result> find(string query);
+        /// <param name="query">A search query word or phrase to use as the keywords in the
+        /// web search.</param>
+        /// <param name="count">How many items to retrieve.</param>
+        /// <returns>A <code>List&lt;Result&gt;</code> of the results found by Bing.</returns>
+        public List<Result> find(string query, int count)
+        {
+            int start = 0;
+            List<Result> results = new List<Result>(count);
+
+            while (count > 0)
+            {
+                Console.Out.WriteLine(
+                    String.Format("Retrieving at {0} # {1} by {2}", start, count, this.ToString()));
+                int found = obtainResultRange(query, start, count, results);
+                Console.Out.WriteLine(String.Format("Got {0}", found));
+                if (found == 0) break; // No more results to be had
+                start += found;
+                count -= found;
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Retrieve the Bing results for a search with indices from offset to
+        /// offset+count.
+        /// </summary>
+        /// <param name="query">The search terms.</param>
+        /// <param name="offset">The starting offset into the results.</param>
+        /// <param name="count">The number of results to retrieve.</param>
+        /// <param name="results">A list to store the results into.</param>
+        /// <returns>The actual number of items found.</returns>
+        abstract protected int obtainResultRange(string query, int offset, int count,
+            List<Result> results);
 
         /// <summary>
         /// Create a <code>Result</code> object from the current result in the Bing XML

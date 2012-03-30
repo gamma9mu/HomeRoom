@@ -11,6 +11,7 @@ namespace HomeRoom
 {
     public class BingWebCrawler : BingCrawler
     {
+        private static string sources = "Web";
 
         private static Dictionary<DATATYPES, string> dataMapping = new Dictionary<DATATYPES, string>()
         {
@@ -20,17 +21,18 @@ namespace HomeRoom
             {DATATYPES.URL, "Url"}
         };
 
-        /// <summary>
-        /// Search Bing for web resources.
-        /// </summary>
-        /// <param name="query">A search query word or phrase to use as the keywords in the
-        /// web search.</param>
-        /// <returns>A <code>List&lt;Result&gt;</code> of the results found by Bing.</returns>
-        override public List<Result> find(string query)
+        override protected int obtainResultRange(string query, int offset,
+            int count, List<Result> results)
         {
-            string sources = "Web";
+            if (count < COUNT_MIN) count = COUNT_MIN;
+            else if (count > COUNT_MAX) count = COUNT_MAX;
+
+            if (offset < OFFSET_MIN) offset = OFFSET_MIN;
+            else if (offset > OFFSET_MAX) offset = OFFSET_MAX;
+
             string completeUri = String.Format(Properties.Resources.SearchUrl,
-                Properties.Resources.AppId, sources, HttpUtility.UrlEncode(query));
+                Properties.Resources.AppId, sources, HttpUtility.UrlEncode(query),
+                offset, count);
             HttpWebRequest webRequest = (HttpWebRequest) WebRequest.Create(completeUri);
             HttpWebResponse webResponse = (HttpWebResponse) webRequest.GetResponse();
             XmlReader reader = XmlReader.Create(webResponse.GetResponseStream());
@@ -44,17 +46,20 @@ namespace HomeRoom
 
             // Check for errors
             XPathNodeIterator err = (XPathNodeIterator) nav.Evaluate("//Errors", nsmgr);
-            if (err == null) return null; // TODO log this
+            if (err == null) return 0; // TODO log this
 
             // Find the results
             XPathNodeIterator iter = (XPathNodeIterator) nav.Evaluate("//web:WebResult", nsmgr);
-            if (iter == null) return null;
+            if (iter == null) return 0;
 
-            // Return the search results
-            List<Result> results = new List<Result>(10);
+            int foundCount = 0;
             while (iter.MoveNext())
+            {
                 results.Add(createResultFromXml(iter, "web", dataMapping));
-            return results;
+                foundCount++;
+            }
+
+            return foundCount;
         }
     }
 }

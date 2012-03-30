@@ -13,7 +13,7 @@ namespace HomeRoom
     /// </summary>
     public class NoopCrawler : ICrawler
     {
-        public List<Result> find(string query)
+        public List<Result> find(string query, int count)
         {
             return new List<Result>(0);
         }

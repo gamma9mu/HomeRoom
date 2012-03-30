@@ -11,6 +11,8 @@ namespace HomeRoom
 {
     public class BingImageCrawler : BingCrawler
     {
+        private static string sources = "Image";
+
         private static Dictionary<DATATYPES, string> dataMapping = new Dictionary<DATATYPES, string>()
         {
             {DATATYPES.TITLE, "Title"},
@@ -19,20 +21,24 @@ namespace HomeRoom
             {DATATYPES.URL, "MediaUrl"}
         };
 
-        /// <summary>
-        /// Search Bing for image resources.
-        /// </summary>
-        /// <param name="query">A search query word or phrase to use as the keywords in the
-        /// image search.</param>
-        /// <returns>A <code>List&lt;Result&gt;</code> of the results found by Bing.</returns>
-        override public List<Result> find(string query)
+        override protected int obtainResultRange(string query, int offset,
+            int count, List<Result> results)
         {
-            string sources = "Image";
+            if (count < COUNT_MIN) count = COUNT_MIN;
+            else if (count > COUNT_MAX) count = COUNT_MAX;
+
+            if (offset < OFFSET_MIN) offset = OFFSET_MIN;
+            else if (offset > OFFSET_MAX) offset = OFFSET_MAX;
+            Console.Out.WriteLine();
             string completeUri = String.Format(Properties.Resources.SearchUrl,
-                Properties.Resources.AppId, sources, HttpUtility.UrlEncode(query));
+                Properties.Resources.AppId, sources, HttpUtility.UrlEncode(query),
+                offset, count);
             HttpWebRequest webRequest = (HttpWebRequest) WebRequest.Create(completeUri);
             HttpWebResponse webResponse = (HttpWebResponse) webRequest.GetResponse();
+            //string webResponse2 = new System.IO.StreamReader(webResponse.GetResponseStream(), Encoding.UTF8).ReadToEnd();
             XmlReader reader = XmlReader.Create(webResponse.GetResponseStream());
+            //Console.Out.WriteLine(webResponse2);
+            //XmlReader reader = XmlReader.Create(webResponse2);
 
             // The namespace manager is needed to handle XML prefixes in the results
             nsmgr = new XmlNamespaceManager(reader.NameTable);
@@ -43,17 +49,20 @@ namespace HomeRoom
 
             // Check for errors
             XPathNodeIterator err = (XPathNodeIterator) nav.Evaluate("//Errors", nsmgr);
-            if (err == null) return null; // TODO log this
+            if (err == null) return 0; // TODO log this
 
             // Find the results
             XPathNodeIterator iter = (XPathNodeIterator) nav.Evaluate("//mms:ImageResult", nsmgr);
-            if (iter == null) return null;
+            if (iter == null) return 0;
 
-            // Return the search results
-            List<Result> results = new List<Result>(10);
+            int foundCount = 0;
             while (iter.MoveNext())
+            {
                 results.Add(createResultFromXml(iter, "mms", dataMapping));
-            return results;
+                foundCount++;
+            }
+
+            return foundCount;
         }
     }
 }
