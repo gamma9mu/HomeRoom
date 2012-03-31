@@ -48,6 +48,7 @@
     <Compile Include="Bing.cs" />
     <Compile Include="BingCrawler.cs" />
     <Compile Include="BingImageCrawler.cs" />
+    <Compile Include="BingVideoCrawler.cs" />
     <Compile Include="BingWebCrawler.cs" />
     <Compile Include="ICrawler.cs" />
     <Compile Include="NoopCrawler.cs" />

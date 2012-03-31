@@ -43,7 +43,7 @@ namespace HomeRoom
         /// <returns>A fresh BingVideoCrawler</returns>
         public ICrawler createVideoCrawler()
         {
-            return new NoopCrawler();
+            return new BingVideoCrawler();
         }
     }
 }
