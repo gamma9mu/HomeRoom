@@ -32,6 +32,12 @@ namespace HomeRoom
             c = bing.createImageCrawler();
             results.AddRange(c.find(request.topic, imageCount));
 
+            c = bing.createVideoCrawler();
+            results.AddRange(c.find(request.topic, videoCount));
+
+            c = bing.createAudioCrawler();
+            results.AddRange(c.find(request.topic, audioCount));
+
             return results;
         }
 
