@@ -16,9 +16,11 @@ namespace HomeRoom
         private static Dictionary<DATATYPES, string> dataMapping = new Dictionary<DATATYPES, string>()
         {
             {DATATYPES.TITLE, "Title"},
-            //{DATATYPES.DESCRIPTION, "Description"},
             {DATATYPES.DATETIME, "DateTime"},
-            {DATATYPES.URL, "MediaUrl"}
+            {DATATYPES.URL, "MediaUrl"},
+            {DATATYPES.WIDTH, "Width"},
+            {DATATYPES.HEIGHT, "Height"},
+            {DATATYPES.SIZE, "FileSize"}
         };
 
         override protected int obtainResultRange(string query, int offset,
