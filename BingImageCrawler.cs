@@ -20,7 +20,8 @@ namespace HomeRoom
             {DATATYPES.URL, "MediaUrl"},
             {DATATYPES.WIDTH, "Width"},
             {DATATYPES.HEIGHT, "Height"},
-            {DATATYPES.SIZE, "FileSize"}
+            {DATATYPES.SIZE, "FileSize"},
+            {DATATYPES.MIME, "ContentType"}
         };
 
         override protected int obtainResultRange(string query, int offset,

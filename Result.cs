@@ -16,6 +16,7 @@ namespace HomeRoom
         public int Width { get; set; }
         public int Size { get; set; }
         public int Length { get; set; }
+        public string MimeType { get; set; }
 
         public Result(string url)
         {

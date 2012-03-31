@@ -43,7 +43,7 @@ namespace HomeRoom
         /// a result set.
         /// </summary>
         protected enum DATATYPES { TITLE, DESCRIPTION, DATETIME, URL, LENGTH,
-            SIZE, HEIGHT, WIDTH };
+            SIZE, HEIGHT, WIDTH, MIME };
 
         /// <summary>
         /// Search Bing for resources of a given type.  Subclasses specify the
@@ -156,6 +156,13 @@ namespace HomeRoom
                 nav = iter.SelectSingleNode(xmlNamespace + ":" + mapping[DATATYPES.WIDTH], nsmgr);
                 if (nav != null) 
                     result.Width = Int32.Parse(nav.InnerXml);
+            }
+
+            if (mapping.ContainsKey(DATATYPES.MIME))
+            {
+                nav = iter.SelectSingleNode(xmlNamespace + ":" + mapping[DATATYPES.MIME], nsmgr);
+                if (nav != null)
+                    result.MimeType = nav.InnerXml;
             }
             
             return result;
