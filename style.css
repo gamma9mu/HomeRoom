@@ -9,6 +9,37 @@
     font-style: normal;
 }
 
+.surveyHeader {
+    background-color: #b0c0d0;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.surveyContent {
+    padding: 1em;
+    border: 1px solid #b0c0d0;
+    border-top: none;
+}
+
+.queryHeader {
+    background-color: #e0b0b0;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.queryContent {
+    padding: 1em;
+    border: 1px solid #e0b0b0;
+    border-top: none;
+}
+
+.slider {
+    margin: 10px;
+    float: left;
+}
+
 body {
 	margin: 0;
 	padding: 20px;

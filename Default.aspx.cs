@@ -13,7 +13,7 @@ public partial class _Default : System.Web.UI.Page
 
     }
 
-    public void submitSurvey(object sender, EventArgs e)
+    public void submitQuery(object sender, EventArgs e)
     {
         HomeRoom.StudentInformation student =
             new HomeRoom.StudentInformation(
@@ -21,7 +21,7 @@ public partial class _Default : System.Web.UI.Page
                 Int32.Parse(aural.Text),
                 Int32.Parse(tactile.Text));
 
-        surveyform.Visible = false;
+        queryform.Visible = false;
         results.Text = "Submission successful";
     }
 }

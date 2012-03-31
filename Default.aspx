@@ -14,26 +14,43 @@
 			    <h1>HomeRoom</h1>
 		    </header>
 		    <div id="content">
-			    <form id="surveyform" runat="server">
-				    <asp:TextBox id="visual" runat="server" Columns="3" MaxLength="3" />% visual
-				    <asp:RequiredFieldValidator id="visualvalidator" ControlToValidate="visual" ErrorMessage="Enter a value between 1 and 100" Font-Size="Small" Display="Dynamic" runat="server"/>
-				    <asp:RangeValidator id="visualrangevalidator" ControlToValidate="visual" Type="Integer" MinimumValue="1" MaximumValue="100" ErrorMessage="Enter a value between 1 and 100" Font-Size="Small" Display="Dynamic" runat="server"/>
-				    <br />
-				    <asp:TextBox id="aural" runat="server" Columns="3" MaxLength="3" />% aural
-				    <asp:RequiredFieldValidator id="auralvalidator" ControlToValidate="aural" ErrorMessage="Enter a value between 1 and 100" Font-Size="Small" Display="Dynamic" runat="server"/>
-				    <asp:RangeValidator id="auralrangevalidator" ControlToValidate="aural" Type="Integer" MinimumValue="1" MaximumValue="100" ErrorMessage="Enter a value between 1 and 100" Font-Size="Small" Display="Dynamic" runat="server"/>
-				    <br />
-				    <asp:TextBox id="tactile" runat="server" Columns="3" MaxLength="3" />% tactile
-				    <asp:RequiredFieldValidator id="tactilevalidator" ControlToValidate="tactile" ErrorMessage="Enter a value between 1 and 100" Font-Size="Small" Display="Dynamic" runat="server"/>
-				    <asp:RangeValidator id="tactilerangevalidator" ControlToValidate="tactile" Type="Integer" MinimumValue="1" MaximumValue="100" ErrorMessage="Enter a value between 1 and 100" Font-Size="Small" Display="Dynamic" runat="server"/>
-				    <br />
-				    <asp:Button id="submit" text="Submit" OnClick="submitSurvey" runat="server" />
+			    <form id="queryform" runat="server">				    
+                    <asp:Panel id="surveyHeader" CssClass="surveyHeader" runat="server">User information</asp:Panel>
+                    <asp:Panel id="surveyContent" CssClass="surveyContent" runat="server">
+                        <div class="slider">
+                            <div>Visual: <asp:Label id="visualLabel" /></div>
+                            <asp:TextBox id="visual" CssClass="slider" runat="server"/>
+                        </div>
+                        <div class="slider">
+                            <div>Aural: <asp:Label id="auralLabel" /></div>
+                            <asp:TextBox id="aural" CssClass="slider" runat="server"/>
+                        </div>
+                        <div class="slider">
+                            <div>Tactile: <asp:Label id="tactileLabel" /></div>
+                            <asp:TextBox id="tactile" CssClass="slider" runat="server"/>
+                        </div>
+                        <div style="clear: both;"></div>
+				    </asp:Panel>
+                    
+                    <asp:Panel id="queryHeader" CssClass="queryHeader" runat="server">Query</asp:Panel>
+                    <asp:Panel id="queryContent" CssClass="queryContent" runat="server">
+                        <asp:TextBox id="query" Width="100%" Font-Size="36pt" runat="server" />
+				        <asp:Button id="submit" text="Submit" OnClick="submitQuery" runat="server" />
+                        <asp:Label id="results" runat="server" />
+                    </asp:Panel>
+                    
+                    
+
+                    <asp:ScriptManager ID="ScriptManager" runat="server" />
+                    <ajaxToolkit:CollapsiblePanelExtender id="expander" runat="server" TargetControlID="surveyContent" ExpandControlID="surveyHeader" CollapseControlID="surveyHeader" />
+                    <ajaxToolkit:SliderExtender id="sliderV" Minimum="0" Maximum="100" runat="server" TargetControlID="visual" BoundControlID="visualLabel" EnableHandleAnimation="true" />
+                    <ajaxToolkit:SliderExtender id="sliderA" Minimum="0" Maximum="100" runat="server" TargetControlID="aural" BoundControlID="auralLabel" EnableHandleAnimation="true" />
+                    <ajaxToolkit:SliderExtender id="sliderT" Minimum="0" Maximum="100" runat="server" TargetControlID="tactile" BoundControlID="tactileLabel" EnableHandleAnimation="true" />
 			    </form>
-                <asp:Label id="results" runat="server" />
 		    </div>
 		    <footer>
 		       <h6>Brian Guthrie, Joe Hessling, Colin Murphy</h6>
-		    </footer>
+		    </footer>    
 	    </div>
     </body>
 </html>

@@ -21,13 +21,31 @@ public partial class _Default {
     protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
     
     /// <summary>
-    /// surveyform control.
+    /// queryform control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlForm surveyform;
+    protected global::System.Web.UI.HtmlControls.HtmlForm queryform;
+    
+    /// <summary>
+    /// surveyHeader control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Panel surveyHeader;
+    
+    /// <summary>
+    /// surveyContent control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Panel surveyContent;
     
     /// <summary>
     /// visual control.
@@ -39,24 +57,6 @@ public partial class _Default {
     protected global::System.Web.UI.WebControls.TextBox visual;
     
     /// <summary>
-    /// visualvalidator control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.RequiredFieldValidator visualvalidator;
-    
-    /// <summary>
-    /// visualrangevalidator control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.RangeValidator visualrangevalidator;
-    
-    /// <summary>
     /// aural control.
     /// </summary>
     /// <remarks>
@@ -64,24 +64,6 @@ public partial class _Default {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.TextBox aural;
-    
-    /// <summary>
-    /// auralvalidator control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.RequiredFieldValidator auralvalidator;
-    
-    /// <summary>
-    /// auralrangevalidator control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.RangeValidator auralrangevalidator;
     
     /// <summary>
     /// tactile control.
@@ -93,22 +75,31 @@ public partial class _Default {
     protected global::System.Web.UI.WebControls.TextBox tactile;
     
     /// <summary>
-    /// tactilevalidator control.
+    /// queryHeader control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.RequiredFieldValidator tactilevalidator;
+    protected global::System.Web.UI.WebControls.Panel queryHeader;
     
     /// <summary>
-    /// tactilerangevalidator control.
+    /// queryContent control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.RangeValidator tactilerangevalidator;
+    protected global::System.Web.UI.WebControls.Panel queryContent;
+    
+    /// <summary>
+    /// query control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.TextBox query;
     
     /// <summary>
     /// submit control.
@@ -127,4 +118,49 @@ public partial class _Default {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.Label results;
+    
+    /// <summary>
+    /// ScriptManager control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.ScriptManager ScriptManager;
+    
+    /// <summary>
+    /// expander control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::AjaxControlToolkit.CollapsiblePanelExtender expander;
+    
+    /// <summary>
+    /// sliderV control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::AjaxControlToolkit.SliderExtender sliderV;
+    
+    /// <summary>
+    /// sliderA control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::AjaxControlToolkit.SliderExtender sliderA;
+    
+    /// <summary>
+    /// sliderT control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::AjaxControlToolkit.SliderExtender sliderT;
 }
