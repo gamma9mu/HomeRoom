@@ -42,7 +42,8 @@ namespace HomeRoom
         /// An enumeration of the different data elements that can be found in
         /// a result set.
         /// </summary>
-        protected enum DATATYPES { TITLE, DESCRIPTION, DATETIME, URL };
+        protected enum DATATYPES { TITLE, DESCRIPTION, DATETIME, URL, LENGTH,
+            SIZE, HEIGHT, WIDTH };
 
         /// <summary>
         /// Search Bing for resources of a given type.  Subclasses specify the
@@ -102,39 +103,62 @@ namespace HomeRoom
             // null results without throwing a NullReferenceException.  Pardon the ternaries...
             XPathNavigator nav;
 
-            string title = null;
+            nav = iter.SelectSingleNode(xmlNamespace + ":" + mapping[DATATYPES.URL], nsmgr);
+            if (nav == null) return null;
+            string url = nav.InnerXml;
+            Result result = new Result(url);
+            
             if (mapping.ContainsKey(DATATYPES.TITLE))
             {
                 nav = iter.SelectSingleNode(xmlNamespace + ":" + mapping[DATATYPES.TITLE], nsmgr);
                 if (nav != null)
-                    title = nav.InnerXml;
+                    result.Title = nav.InnerXml;
             }
 
-            string description = null;
             if (mapping.ContainsKey(DATATYPES.DESCRIPTION))
             {
                 nav = iter.SelectSingleNode(xmlNamespace + ":" + mapping[DATATYPES.DESCRIPTION], nsmgr);
                 if (nav != null)
-                    description = nav.InnerXml;
+                    result.Description = nav.InnerXml;
             }
 
-            DateTime datetime = DateTime.UtcNow;
+            
             if (mapping.ContainsKey(DATATYPES.DATETIME))
             {
                 nav = iter.SelectSingleNode(xmlNamespace + ":" + mapping[DATATYPES.DATETIME], nsmgr);
                 if (nav != null) 
-                    datetime = DateTime.Parse(nav.InnerXml);
+                    result.Datetime = DateTime.Parse(nav.InnerXml);
             }
             
-            string url = null;
-            if (mapping.ContainsKey(DATATYPES.URL))
+            if (mapping.ContainsKey(DATATYPES.LENGTH))
             {
-                nav = iter.SelectSingleNode(xmlNamespace + ":" + mapping[DATATYPES.URL], nsmgr);
+                nav = iter.SelectSingleNode(xmlNamespace + ":" + mapping[DATATYPES.LENGTH], nsmgr);
                 if (nav != null) 
-                    url = nav.InnerXml;
+                    result.Length = Int32.Parse(nav.InnerXml);
+            }
+
+            if (mapping.ContainsKey(DATATYPES.SIZE))
+            {
+                nav = iter.SelectSingleNode(xmlNamespace + ":" + mapping[DATATYPES.SIZE], nsmgr);
+                if (nav != null) 
+                    result.Size = Int32.Parse(nav.InnerXml);
+            }
+
+            if (mapping.ContainsKey(DATATYPES.HEIGHT))
+            {
+                nav = iter.SelectSingleNode(xmlNamespace + ":" + mapping[DATATYPES.HEIGHT], nsmgr);
+                if (nav != null) 
+                    result.Height = Int32.Parse(nav.InnerXml);
+            }
+
+            if (mapping.ContainsKey(DATATYPES.WIDTH))
+            {
+                nav = iter.SelectSingleNode(xmlNamespace + ":" + mapping[DATATYPES.WIDTH], nsmgr);
+                if (nav != null) 
+                    result.Width = Int32.Parse(nav.InnerXml);
             }
             
-            return new Result(title, description, datetime, url);
+            return result;
         }
     }
 }
