@@ -30,6 +30,24 @@ public partial class _Default {
     protected global::System.Web.UI.HtmlControls.HtmlForm queryform;
     
     /// <summary>
+    /// configHeader control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Panel configHeader;
+    
+    /// <summary>
+    /// configContent control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Panel configContent;
+    
+    /// <summary>
     /// surveyHeader control.
     /// </summary>
     /// <remarks>
@@ -129,13 +147,22 @@ public partial class _Default {
     protected global::System.Web.UI.ScriptManager ScriptManager;
     
     /// <summary>
-    /// expander control.
+    /// expanderC control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::AjaxControlToolkit.CollapsiblePanelExtender expander;
+    protected global::AjaxControlToolkit.CollapsiblePanelExtender expanderC;
+    
+    /// <summary>
+    /// expanderS control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::AjaxControlToolkit.CollapsiblePanelExtender expanderS;
     
     /// <summary>
     /// sliderV control.

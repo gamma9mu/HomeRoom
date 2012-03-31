@@ -15,6 +15,18 @@
 		    </header>
 		    <div id="content">
 			    <form id="queryform" runat="server">				    
+                    <asp:Panel id="configHeader" CssClass="surveyHeader" runat="server">Configuration information</asp:Panel>
+                    <asp:Panel id="configContent" CssClass="surveyContent" runat="server">
+                        Connection Speed:
+                        <asp:RadioButtonList runat="server">
+                            <asp:ListItem>56k</asp:ListItem>
+                            <asp:ListItem>Satellite</asp:ListItem>
+                            <asp:ListItem>3G</asp:ListItem>
+                            <asp:ListItem>DSL</asp:ListItem>
+                            <asp:ListItem>Cable</asp:ListItem>
+                        </asp:RadioButtonList>
+                        <div style="clear: both;"></div>
+				    </asp:Panel>
                     <asp:Panel id="surveyHeader" CssClass="surveyHeader" runat="server">User information</asp:Panel>
                     <asp:Panel id="surveyContent" CssClass="surveyContent" runat="server">
                         <div class="slider">
@@ -39,10 +51,9 @@
                         <asp:Label id="results" runat="server" />
                     </asp:Panel>
                     
-                    
-
                     <asp:ScriptManager ID="ScriptManager" runat="server" />
-                    <ajaxToolkit:CollapsiblePanelExtender id="expander" runat="server" TargetControlID="surveyContent" ExpandControlID="surveyHeader" CollapseControlID="surveyHeader" />
+                    <ajaxToolkit:CollapsiblePanelExtender id="expanderC" runat="server" TargetControlID="configContent" ExpandControlID="configHeader" CollapseControlID="configHeader" Collapsed="true" />
+                    <ajaxToolkit:CollapsiblePanelExtender id="expanderS" runat="server" TargetControlID="surveyContent" ExpandControlID="surveyHeader" CollapseControlID="surveyHeader" />
                     <ajaxToolkit:SliderExtender id="sliderV" Minimum="0" Maximum="100" runat="server" TargetControlID="visual" BoundControlID="visualLabel" EnableHandleAnimation="true" />
                     <ajaxToolkit:SliderExtender id="sliderA" Minimum="0" Maximum="100" runat="server" TargetControlID="aural" BoundControlID="auralLabel" EnableHandleAnimation="true" />
                     <ajaxToolkit:SliderExtender id="sliderT" Minimum="0" Maximum="100" runat="server" TargetControlID="tactile" BoundControlID="tactileLabel" EnableHandleAnimation="true" />
