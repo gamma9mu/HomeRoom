@@ -11,25 +11,82 @@ namespace HomeRoom
     {
         private bool cleared = false;
 
-        public String Title { get; set; } // A name
-        public String Creator { get; set; } // Primary "maker"
-        public String Subject { get; set; } // Topic
-        public String Description { get; set; } // A brief description
-        public String Publisher { get; set; } // what it says
+        /// <summary>
+        /// A name for the item.
+        /// </summary>
+        public String Title { get; set; }
+
+        /// <summary>
+        /// The primary creator of the item.
+        /// </summary>
+        public String Creator { get; set; }
+
+        /// <summary>
+        /// The item's topic.
+        /// </summary>
+        public String Subject { get; set; }
+
+        /// <summary>
+        /// A brief description of the item.
+        /// </summary>
+        public String Description { get; set; }
+
+        /// <summary>
+        /// The item's publisher.
+        /// </summary>
+        public String Publisher { get; set; }
 
         // TODO should this be a list?
-        public String Contributor { get; set; } // what it says
-        public DateTime Date { get; set; } // A relavent date
-        public String Type { get; set; } // Genre?
-        public String Format { get; set; } // Format, eg. MIME type
-        public Uri Identifier { get; set; } // Reference (used in rdf:RDF>rdf:about)
-        public String Language { get; set; } // maybe a 2-char international code
+        /// <summary>
+        /// Contributors to the item.
+        /// </summary>
+        public String Contributor { get; set; }
+
+        /// <summary>
+        /// A "relavent" date.
+        /// </summary>
+        public DateTime Date { get; set; }
+
+        /// <summary>
+        /// The genre of the item?
+        /// </summary>
+        public String Type { get; set; }
+
+        /// <summary>
+        /// The item's format (MIME type).
+        /// </summary>
+        public String Format { get; set; }
+        
+        /// <summary>
+        /// The item's URI.
+        /// </summary>
+        public Uri Identifier { get; set; }
+
+        /// <summary>
+        /// The language of the item in 2-char international code.
+        /// </summary>
+        public String Language { get; set; }
 
         // TODO is this useful?
-        public String Relation { get; set; } // Related item
-        public String Coverage { get; set; } // Applicability
-        public String Rights { get; set; } //  IP info
-        public long Size { get; set; } // File size in bytes
+        /// <summary>
+        /// A related item.
+        /// </summary>
+        public String Relation { get; set; }
+
+        /// <summary>
+        /// What the item applies to.
+        /// </summary>
+        public String Coverage { get; set; }
+
+        /// <summary>
+        /// Intellectual property information of the item.
+        /// </summary>
+        public String Rights { get; set; }
+
+        /// <summary>
+        /// The item's file size in bytes.
+        /// </summary>
+        public long Size { get; set; }
 
         /// <summary>
         /// Obtain an XML representation of the metadata.
