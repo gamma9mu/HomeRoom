@@ -87,6 +87,9 @@ namespace HomeRoom
                 rdfmd.Description = r.Description;
                 rdfmd.Date = r.Datetime;
                 rdfmd.Identifier = r.Url;
+                rdfmd.Size = r.Size;
+                rdfmd.Format = r.MimeType;
+                //Length, Height, Width could be used, but Dublin Core doesn't care
 
                 HttpMetaData httpmd = new HttpMetaData(rdfmd);
                 httpmd.addMetaData();
