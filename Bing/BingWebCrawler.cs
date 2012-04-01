@@ -9,10 +9,19 @@ using System.Xml.XPath;
 
 namespace HomeRoom
 {
+    /// <summary>
+    /// Search for web page items using Bing Search API.
+    /// </summary>
     public class BingWebCrawler : BingCrawler
     {
+        /// <summary>
+        /// The source string for use in search queries.
+        /// </summary>
         private static string sources = "Web";
 
+        /// <summary>
+        /// A mapping from XML element names to fields on a <code>Result</code>.
+        /// </summary>
         private static Dictionary<DATATYPES, string> dataMapping = new Dictionary<DATATYPES, string>()
         {
             {DATATYPES.TITLE, "Title"},
@@ -21,6 +30,16 @@ namespace HomeRoom
             {DATATYPES.URL, "Url"}
         };
 
+        /// <summary>
+        /// Implement the specific form of searching for web pages.
+        /// </summary>
+        /// <param name="query">The topic to search for.</param>
+        /// <param name="offset">The required beginning offset into the
+        /// results.</param>
+        /// <param name="count">The number of results to request.</param>
+        /// <param name="results">The collection to store results into.</param>
+        /// <returns>The number of results that were stored into
+        /// <code>results</code>.</returns>
         override protected int obtainResultRange(string query, int offset,
             int count, List<Result> results)
         {
