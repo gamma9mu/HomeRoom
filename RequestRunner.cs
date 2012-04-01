@@ -5,10 +5,16 @@ using System.Text;
 
 namespace HomeRoom
 {
+    /// <summary>
+    /// RequestRunner handles the retrieval of learning variaables for a given
+    /// request.
+    /// </summary>
     class RequestRunner
     {
+        // The multiplicative factor for weighting
         private int RETRIEVAL_FACTOR = 3;
 
+        // These variables represent the weighted total to retrieve from each type.
         private int webCount;
         private int imageCount;
         private int audioCount;
