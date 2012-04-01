@@ -21,7 +21,7 @@
                         <asp:RadioButtonList id="speed" runat="server">
                             <asp:ListItem Value="50" Text="Dialup, ISDN">Dialup</asp:ListItem>
                             <asp:ListItem Value="500" Text="Satellite, EDGE, EVDO, 3G">Satellite</asp:ListItem>
-                            <asp:ListItem Value="1500" Text="DSL">DSL</asp:ListItem>
+                            <asp:ListItem Value="1500" Text="DSL" Selected>DSL</asp:ListItem>
                             <asp:ListItem Value="3000" Text="4G">4G</asp:ListItem>
                             <asp:ListItem Value="5000" Text="Cable, Fiber">Cable</asp:ListItem>
                         </asp:RadioButtonList>
