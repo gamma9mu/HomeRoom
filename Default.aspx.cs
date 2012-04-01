@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Collections;
+using HomeRoom;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -15,13 +16,16 @@ public partial class _Default : System.Web.UI.Page
 
     public void submitQuery(object sender, EventArgs e)
     {
-        HomeRoom.StudentInformation student =
-            new HomeRoom.StudentInformation(
+        StudentInformation student = new StudentInformation(
                 Int32.Parse(visual.Text),
                 Int32.Parse(aural.Text),
                 Int32.Parse(tactile.Text));
 
         queryform.Visible = false;
         results.Text = "Submission successful";
+
+        Controller controller = Controller.getInstance();
+        Request request = new Request(student, query.Text, 1500000);
+        controller.addRequest(request);
     }
 }
