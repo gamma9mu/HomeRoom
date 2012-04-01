@@ -48,9 +48,9 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
-            visual = 0;
-            aural = 0;
-            tactile = 0;
+            visual = 33;
+            aural = 33;
+            tactile = 33;
         }
     }
 
