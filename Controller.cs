@@ -116,7 +116,8 @@ namespace HomeRoom
                 //Length, Height, Width could be used, but Dublin Core doesn't care
 
                 HttpMetaData httpmd = new HttpMetaData(rdfmd);
-                httpmd.addMetaData();
+                if (httpmd.wasFound)
+                    httpmd.addMetaData();
 
                 rdf.addDescription(rdfmd.getDescription());
             }
