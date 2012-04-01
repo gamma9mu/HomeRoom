@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Collections;
+using HomeRoom;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -15,21 +16,15 @@ public partial class _Default : System.Web.UI.Page
 
     public void submitQuery(object sender, EventArgs e)
     {
-        if (speedValidator.IsValid)
-        {
-            HomeRoom.StudentInformation student =
-                new HomeRoom.StudentInformation(
-                    Int32.Parse(visual.Text),
-                    Int32.Parse(aural.Text),
-                    Int32.Parse(tactile.Text));
+        StudentInformation student = new StudentInformation(
+                Int32.Parse(visual.Text),
+                Int32.Parse(aural.Text),
+                Int32.Parse(tactile.Text));
 
-            HomeRoom.Request request =
-                new HomeRoom.Request(
-                    student,
-                    query.Text,
-                    Int32.Parse(speed.SelectedValue));
+        queryform.Visible = false;
 
-            queryform.Visible = false;
-        }
+        Controller controller = Controller.getInstance();
+        Request request = new Request(student, query.Text, 1500000);
+        controller.addRequest(request);
     }
 }
