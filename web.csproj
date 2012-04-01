@@ -47,15 +47,21 @@
       <HintPath>..\packages\AjaxControlToolkit.4.1.51116\lib\40\SanitizerProviders\SanitizerProviders.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="fonts\PrintClearly-webfont.svg" />
+    <Content Include="questions.aspx" />
     <Content Include="style.css" />
     <Content Include="tile.png" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Default.aspx.designer.cs">

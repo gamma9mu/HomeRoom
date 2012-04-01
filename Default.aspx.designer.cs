@@ -75,60 +75,6 @@ public partial class _Default {
     protected global::System.Web.UI.WebControls.Panel surveyContent;
     
     /// <summary>
-    /// visualLabel control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label visualLabel;
-    
-    /// <summary>
-    /// visual control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.TextBox visual;
-    
-    /// <summary>
-    /// auralLabel control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label auralLabel;
-    
-    /// <summary>
-    /// aural control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.TextBox aural;
-    
-    /// <summary>
-    /// tactileLabel control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label tactileLabel;
-    
-    /// <summary>
-    /// tactile control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.TextBox tactile;
-    
-    /// <summary>
     /// queryHeader control.
     /// </summary>
     /// <remarks>
@@ -217,31 +163,4 @@ public partial class _Default {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::AjaxControlToolkit.CollapsiblePanelExtender expanderS;
-    
-    /// <summary>
-    /// sliderV control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::AjaxControlToolkit.SliderExtender sliderV;
-    
-    /// <summary>
-    /// sliderA control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::AjaxControlToolkit.SliderExtender sliderA;
-    
-    /// <summary>
-    /// sliderT control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::AjaxControlToolkit.SliderExtender sliderT;
 }

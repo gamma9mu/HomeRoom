@@ -18,7 +18,7 @@
                     <asp:Panel id="configHeader" CssClass="surveyHeader" runat="server">Configuration information</asp:Panel>
                     <asp:Panel id="configContent" CssClass="surveyContent" runat="server">
                         Connection Speed:
-                        <asp:RadioButtonList id="speed" runat="server">
+                        <asp:RadioButtonList id="speed" RepeatDirection="Horizontal" runat="server">
                             <asp:ListItem Value="50" Text="Dialup, ISDN">Dialup</asp:ListItem>
                             <asp:ListItem Value="500" Text="Satellite, EDGE, EVDO, 3G">Satellite</asp:ListItem>
                             <asp:ListItem Value="1500" Text="DSL">DSL</asp:ListItem>
@@ -28,28 +28,16 @@
                         <div style="clear: both;"></div>
 				    </asp:Panel>
 
-                    <asp:Panel id="surveyHeader" CssClass="surveyHeader" runat="server">User information</asp:Panel>
+                    <asp:Panel id="surveyHeader" CssClass="surveyHeader" runat="server">User survey</asp:Panel>
                     <asp:Panel id="surveyContent" CssClass="surveyContent" runat="server">
-                        <div class="slider">
-                            <div>Visual: <asp:Label id="visualLabel" runat="server" /></div>
-                            <asp:TextBox id="visual" CssClass="slider" runat="server"/>
-                        </div>
-                        <div class="slider">
-                            <div>Aural: <asp:Label id="auralLabel" runat="server" /></div>
-                            <asp:TextBox id="aural" CssClass="slider" runat="server"/>
-                        </div>
-                        <div class="slider">
-                            <div>Tactile: <asp:Label id="tactileLabel" runat="server" /></div>
-                            <asp:TextBox id="tactile" CssClass="slider" runat="server"/>
-                        </div>
-                        <div style="clear: both;"></div>
+                        <!--#include file="questions.aspx"-->
 				    </asp:Panel>
                     
                     <asp:Panel id="queryHeader" CssClass="queryHeader" runat="server">Query</asp:Panel>
                     <asp:Panel id="queryContent" CssClass="queryContent" runat="server">
                         <asp:TextBox id="query" Width="100%" Font-Size="36pt" runat="server" />
 				        <asp:Button id="submit" text="Submit" OnClick="submitQuery" runat="server" />
-                        <asp:Label id="results" Text="hey" runat="server" />
+                        <asp:Label id="results" runat="server" />
                         <asp:ValidationSummary runat="server" />
                     </asp:Panel>
 
@@ -57,11 +45,8 @@
                     <asp:RequiredFieldValidator id="queryValidator" ControlToValidate="query" ErrorMessage="Please enter a topic" Display="None" runat="server" />
 
                     <asp:ScriptManager id="ScriptManager" runat="server" />
-                    <ajaxToolkit:CollapsiblePanelExtender id="expanderC" runat="server" TargetControlID="configContent" ExpandControlID="configHeader" CollapseControlID="configHeader" Collapsed="true" />
+                    <ajaxToolkit:CollapsiblePanelExtender id="expanderC" runat="server" TargetControlID="configContent" ExpandControlID="configHeader" CollapseControlID="configHeader" />
                     <ajaxToolkit:CollapsiblePanelExtender id="expanderS" runat="server" TargetControlID="surveyContent" ExpandControlID="surveyHeader" CollapseControlID="surveyHeader" />
-                    <ajaxToolkit:SliderExtender id="sliderV" Minimum="0" Maximum="100" runat="server" TargetControlID="visual" BoundControlID="visualLabel" EnableHandleAnimation="true" />
-                    <ajaxToolkit:SliderExtender id="sliderA" Minimum="0" Maximum="100" runat="server" TargetControlID="aural" BoundControlID="auralLabel" EnableHandleAnimation="true" />
-                    <ajaxToolkit:SliderExtender id="sliderT" Minimum="0" Maximum="100" runat="server" TargetControlID="tactile" BoundControlID="tactileLabel" EnableHandleAnimation="true" />
 			    </form>
 		    </div>
 		    <footer>
