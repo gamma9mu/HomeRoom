@@ -9,6 +9,9 @@ using System.Xml.XPath;
 
 namespace HomeRoom
 {
+    /// <summary>
+    /// Provides common functionality to specialized Bing search classes.
+    /// </summary>
     public abstract class BingCrawler : ICrawler
     {
         /// <summary>
