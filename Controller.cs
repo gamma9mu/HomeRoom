@@ -15,10 +15,26 @@ namespace HomeRoom
     /// </summary>
     public class Controller
     {
+        /// <summary>
+        /// Lock for queuedRequests.
+        /// </summary>
         private static Mutex queueLock = new Mutex();
+
+        /// <summary>
+        /// A queue of Request objects that need to be processed by the
+        /// Controller.
+        /// </summary>
         private static Queue<Request> queuedRequests = new Queue<Request>();
+        
+        /// <summary>
+        /// The sole instance of the class.
+        /// </summary>
         private static Controller singleton = new Controller();
 
+        /// <summary>
+        /// Singleton "constructor"
+        /// </summary>
+        /// <returns>The sole instance of Controller.</returns>
         public static Controller getInstance()
         {
             return singleton;
@@ -60,7 +76,7 @@ namespace HomeRoom
         /// <summary>
         /// Attempt to enqueue all waiting requests.
         /// </summary>
-        /// <param name="state"></param>
+        /// <param name="state">ignored</param>
         static void processQueue(Object state)
         {
             Controller.queueLock.WaitOne();
@@ -75,16 +91,18 @@ namespace HomeRoom
             Controller.queueLock.ReleaseMutex();
         }
 
+        /// <summary>
+        /// Process a single <code>Request</code>.
+        /// </summary>
+        /// <param name="state">The <code>Request</code> to process.</param>
         static void processRequest(Object state)
         {
             Request request = (Request) state;
             if (request == null) return;
 
+            List<Result> results = new RequestRunner(request).retrieveItems();
+
             RdfFile rdf = new RdfFile();
-
-            RequestRunner rr = new RequestRunner(request);
-            List<Result> results = rr.retrieveItems();
-
             foreach (Result r in results)
             {
                 RDFMetaData rdfmd = new RDFMetaData();
