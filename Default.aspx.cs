@@ -14,15 +14,18 @@ public partial class _Default : System.Web.UI.Page
 
     public void quantifySurvey()
     {
+        int count = 0;
         visual = 0;
         aural = 0;
         tactile = 0;
+        
 
-        foreach (Control question in surveyContent.Controls)
+        foreach (Control control in surveyContent.Controls)
         {
-            foreach (Control level2 in question.Controls)
+            if (control is RadioButtonList)
             {
-                switch (((RadioButtonList)level2).SelectedValue) // thanks to http://forums.asp.net/t/1007830.aspx
+                count++;
+                switch (((RadioButtonList)control).SelectedValue)
                 {
                     case "a":
                         visual++;
@@ -36,12 +39,25 @@ public partial class _Default : System.Web.UI.Page
                 }
             }
         }
+
+        if (count > 0)
+        {
+            visual = visual * 100 / count;
+            aural = aural * 100 / count;
+            tactile = tactile * 100 / count;
+        }
+        else
+        {
+            visual = 0;
+            aural = 0;
+            tactile = 0;
+        }
     }
 
     public void submitQuery(object sender, EventArgs e)
     {
         quantifySurvey();
-        
+
         StudentInformation student = new StudentInformation(visual, aural, tactile);
 
         Controller controller = Controller.getInstance();
@@ -49,6 +65,6 @@ public partial class _Default : System.Web.UI.Page
         controller.addRequest(request);
 
         query.Text = "";
-        results.Text = "Submission successful!" + visual + aural + tactile;
+        results.Text = "Submission successful!";
     }
 }
