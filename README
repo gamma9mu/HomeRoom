@@ -1,0 +1,15 @@
+HomeRoom is a web-based user interface, a resource aggregator and a RDF-based
+content tagging system to support the delivery of learning objects tailored to
+an individual, their equipment, and their internet connection by providing a
+friendly interface to the user and gathering individual resources to compose
+into a complete learning module.
+
+HomeRoom is written in C# and uses ASP.NET for the web frontend.  The project
+requires AjaxControlToolkit, which may be installed using NuGet.
+
+To obtain the full source, clone this repo and, inside its root directory, run
+the following (where '$' is the prompt).
+
+$ git submodule init
+$ git submodule update
+
