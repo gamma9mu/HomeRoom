@@ -35,10 +35,12 @@ namespace HomeRoom
             preFilter();
             int expectedResultCount = webCount + imageCount + videoCount + audioCount;
 
-            Bing bing = new Bing();
-            
             List<Result> results = new List<Result>(expectedResultCount);
-            results.AddRange(searchWith(bing));
+            foreach (ISearchFactory factory
+                in SearchFactoryRegistry.getInstance().getAllFactories())
+            {
+                results.AddRange(searchWith(factory));
+            }
 
             return results;
         }
