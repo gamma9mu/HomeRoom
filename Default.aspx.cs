@@ -15,13 +15,21 @@ public partial class _Default : System.Web.UI.Page
 
     public void submitQuery(object sender, EventArgs e)
     {
-        HomeRoom.StudentInformation student =
-            new HomeRoom.StudentInformation(
-                Int32.Parse(visual.Text),
-                Int32.Parse(aural.Text),
-                Int32.Parse(tactile.Text));
+        if (speedValidator.IsValid)
+        {
+            HomeRoom.StudentInformation student =
+                new HomeRoom.StudentInformation(
+                    Int32.Parse(visual.Text),
+                    Int32.Parse(aural.Text),
+                    Int32.Parse(tactile.Text));
 
-        queryform.Visible = false;
-        results.Text = "Submission successful";
+            HomeRoom.Request request =
+                new HomeRoom.Request(
+                    student,
+                    query.Text,
+                    Int32.Parse(speed.SelectedValue));
+
+            queryform.Visible = false;
+        }
     }
 }

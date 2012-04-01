@@ -48,6 +48,15 @@ public partial class _Default {
     protected global::System.Web.UI.WebControls.Panel configContent;
     
     /// <summary>
+    /// speed control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.RadioButtonList speed;
+    
+    /// <summary>
     /// surveyHeader control.
     /// </summary>
     /// <remarks>
@@ -66,6 +75,15 @@ public partial class _Default {
     protected global::System.Web.UI.WebControls.Panel surveyContent;
     
     /// <summary>
+    /// visualLabel control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label visualLabel;
+    
+    /// <summary>
     /// visual control.
     /// </summary>
     /// <remarks>
@@ -75,6 +93,15 @@ public partial class _Default {
     protected global::System.Web.UI.WebControls.TextBox visual;
     
     /// <summary>
+    /// auralLabel control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label auralLabel;
+    
+    /// <summary>
     /// aural control.
     /// </summary>
     /// <remarks>
@@ -82,6 +109,15 @@ public partial class _Default {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.TextBox aural;
+    
+    /// <summary>
+    /// tactileLabel control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label tactileLabel;
     
     /// <summary>
     /// tactile control.
@@ -136,6 +172,15 @@ public partial class _Default {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.Label results;
+    
+    /// <summary>
+    /// speedValidator control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.RequiredFieldValidator speedValidator;
     
     /// <summary>
     /// ScriptManager control.

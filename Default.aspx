@@ -18,27 +18,28 @@
                     <asp:Panel id="configHeader" CssClass="surveyHeader" runat="server">Configuration information</asp:Panel>
                     <asp:Panel id="configContent" CssClass="surveyContent" runat="server">
                         Connection Speed:
-                        <asp:RadioButtonList runat="server">
-                            <asp:ListItem>56k</asp:ListItem>
-                            <asp:ListItem>Satellite</asp:ListItem>
-                            <asp:ListItem>3G</asp:ListItem>
-                            <asp:ListItem>DSL</asp:ListItem>
-                            <asp:ListItem>Cable</asp:ListItem>
+                        <asp:RadioButtonList id="speed" runat="server">
+                            <asp:ListItem Value="50" Text="Dialup, ISDN">Dialup</asp:ListItem>
+                            <asp:ListItem Value="500" Text="Satellite, EDGE, EVDO, 3G">Satellite</asp:ListItem>
+                            <asp:ListItem Value="1500" Text="DSL">DSL</asp:ListItem>
+                            <asp:ListItem Value="3000" Text="4G">4G</asp:ListItem>
+                            <asp:ListItem Value="5000" Text="Cable, Fiber">Cable</asp:ListItem>
                         </asp:RadioButtonList>
                         <div style="clear: both;"></div>
 				    </asp:Panel>
+
                     <asp:Panel id="surveyHeader" CssClass="surveyHeader" runat="server">User information</asp:Panel>
                     <asp:Panel id="surveyContent" CssClass="surveyContent" runat="server">
                         <div class="slider">
-                            <div>Visual: <asp:Label id="visualLabel" /></div>
+                            <div>Visual: <asp:Label id="visualLabel" runat="server" /></div>
                             <asp:TextBox id="visual" CssClass="slider" runat="server"/>
                         </div>
                         <div class="slider">
-                            <div>Aural: <asp:Label id="auralLabel" /></div>
+                            <div>Aural: <asp:Label id="auralLabel" runat="server" /></div>
                             <asp:TextBox id="aural" CssClass="slider" runat="server"/>
                         </div>
                         <div class="slider">
-                            <div>Tactile: <asp:Label id="tactileLabel" /></div>
+                            <div>Tactile: <asp:Label id="tactileLabel" runat="server" /></div>
                             <asp:TextBox id="tactile" CssClass="slider" runat="server"/>
                         </div>
                         <div style="clear: both;"></div>
@@ -50,8 +51,10 @@
 				        <asp:Button id="submit" text="Submit" OnClick="submitQuery" runat="server" />
                         <asp:Label id="results" runat="server" />
                     </asp:Panel>
-                    
-                    <asp:ScriptManager ID="ScriptManager" runat="server" />
+
+                    <asp:RequiredFieldValidator id="speedValidator" ControlToValidate="speed" runat="server" />
+
+                    <asp:ScriptManager id="ScriptManager" runat="server" />
                     <ajaxToolkit:CollapsiblePanelExtender id="expanderC" runat="server" TargetControlID="configContent" ExpandControlID="configHeader" CollapseControlID="configHeader" Collapsed="true" />
                     <ajaxToolkit:CollapsiblePanelExtender id="expanderS" runat="server" TargetControlID="surveyContent" ExpandControlID="surveyHeader" CollapseControlID="surveyHeader" />
                     <ajaxToolkit:SliderExtender id="sliderV" Minimum="0" Maximum="100" runat="server" TargetControlID="visual" BoundControlID="visualLabel" EnableHandleAnimation="true" />
