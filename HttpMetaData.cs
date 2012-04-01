@@ -15,8 +15,21 @@ namespace HomeRoom
         private HttpWebResponse headResponse;
         private RDFMetaData metadata;
 
+        /// <summary>
+        /// Does the resource exist?
+        /// 
+        /// This value is only valid after <code>addMetaData</code> has been
+        /// called.
+        /// </summary>
         public bool wasFound { get; private set; }
 
+        /// <summary>
+        /// Setup the HTTP HEAD retriever with a possibly existing HTTP
+        /// response.
+        /// </summary>
+        /// <param name="metadata">The metadata to add to.</param>
+        /// <param name="headResponse">An HTTP response, if one has already
+        /// been received.</param>
         public HttpMetaData(RDFMetaData metadata, HttpWebResponse headResponse = null)
         {
             this.metadata = metadata;
@@ -24,6 +37,11 @@ namespace HomeRoom
             this.wasFound = false;
         }
 
+        /// <summary>
+        /// Add metadata to the known set from an HTTP read request.
+        /// 
+        /// If no request was passed to the constructor, one will be created here.
+        /// </summary>
         public void addMetaData()
         {
             if (headResponse == null)
@@ -49,6 +67,9 @@ namespace HomeRoom
             }
         }
 
+        /// <summary>
+        /// Performs the HTTP HEAD request.
+        /// </summary>
         private void retrieveHeadResponse()
         {
             if (metadata.Identifier == null) return; // cannot lookup without an address
