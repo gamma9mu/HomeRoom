@@ -17,12 +17,18 @@ namespace HomeRoom
     {
         private static Mutex queueLock = new Mutex();
         private static Queue<Request> queuedRequests = new Queue<Request>();
+        private static Controller singleton = new Controller();
+
+        public static Controller getInstance()
+        {
+            return singleton;
+        }
 
         /// <summary>
         /// Create a controller.  If the background processing thread cannot be
         /// started, this will fail and throw an <code>Exception</code>.
         /// </summary>
-        public Controller()
+        private Controller()
         {
             if (!ThreadPool.QueueUserWorkItem(new WaitCallback(processQueue)))
             {
@@ -102,6 +108,7 @@ namespace HomeRoom
                             + ControllerConfig.outputFileSuffix);
             fw.AutoFlush = true;
             rdf.Save(fw);
+            fw.Close();
         }
 
         public static void Main(string[] args)
