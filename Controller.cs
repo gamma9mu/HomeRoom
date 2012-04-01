@@ -110,14 +110,5 @@ namespace HomeRoom
             rdf.Save(fw);
             fw.Close();
         }
-
-        public static void Main(string[] args)
-        {
-            string topic = "johnny carson";
-            StudentInformation si = new StudentInformation(37, 46, 17);
-            Request r = new Request(si, topic, 1500000);
-            Controller c = new Controller();
-            c.addRequest(r);
-        }
     }
 }
