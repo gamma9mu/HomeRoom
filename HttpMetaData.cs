@@ -15,10 +15,13 @@ namespace HomeRoom
         private HttpWebResponse headResponse;
         private RDFMetaData metadata;
 
+        public bool wasFound { get; private set; }
+
         public HttpMetaData(RDFMetaData metadata, HttpWebResponse headResponse = null)
         {
             this.metadata = metadata;
             this.headResponse = headResponse;
+            this.wasFound = false;
         }
 
         public void addMetaData()
@@ -30,6 +33,7 @@ namespace HomeRoom
 
             if (headResponse.StatusCode == HttpStatusCode.OK)
             {
+                wasFound = true;
                 if (headResponse.LastModified != null) metadata.Date = headResponse.LastModified;
                 if (headResponse.ContentType != null) metadata.Format = headResponse.ContentType;
                 if (headResponse.ContentLength > 0) metadata.Size = headResponse.ContentLength;
