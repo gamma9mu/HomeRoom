@@ -24,7 +24,7 @@ public partial class _Default : System.Web.UI.Page
         queryform.Visible = false;
 
         Controller controller = Controller.getInstance();
-        Request request = new Request(student, query.Text, 1500000);
+        Request request = new Request(student, query.Text, Int32.Parse(speed.SelectedValue));
         controller.addRequest(request);
     }
 }
