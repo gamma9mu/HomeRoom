@@ -17,7 +17,7 @@
 			    <form id="queryform" runat="server">				    
                     <asp:Panel id="configHeader" CssClass="surveyHeader" runat="server">Configuration information</asp:Panel>
                     <asp:Panel id="configContent" CssClass="surveyContent" runat="server">
-                        Connection Speed:
+                        How fast is your internet connection?
                         <asp:RadioButtonList id="speed" RepeatDirection="Horizontal" runat="server">
                             <asp:ListItem Value="50" Text="Dialup, ISDN">Dialup</asp:ListItem>
                             <asp:ListItem Value="500" Text="Satellite, EDGE, EVDO, 3G">Satellite</asp:ListItem>
