@@ -5,11 +5,21 @@ using System.Text;
 
 namespace HomeRoom
 {
+    /// <summary>
+    /// Provide a single, complete listing of every available search proider in
+    /// and iterable format.
+    /// </summary>
     public class SearchFactoryRegistry
     {
+        /// <summary>
+        /// The known search providers.
+        /// </summary>
         private List<ISearchFactory> factories =
             new List<ISearchFactory>();
 
+        /// <summary>
+        /// The single instance of SearchFactoryRegistry.
+        /// </summary>
         private static SearchFactoryRegistry singleton = null;
 
         /// <summary>
@@ -31,9 +41,9 @@ namespace HomeRoom
         }
 
         /// <summary>
-        /// Get the one SearchFactoryRegistry object.
+        /// Get the only SearchFactoryRegistry object.
         /// </summary>
-        /// <returns>A SearchFactoryRegistry.</returns>
+        /// <returns>The single instance of <code>SearchFactoryRegistry</code>.</returns>
         public static SearchFactoryRegistry getInstance()
         {
             if (singleton == null) singleton = new SearchFactoryRegistry();
