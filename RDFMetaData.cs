@@ -7,6 +7,9 @@ using System.Xml.Linq;
 
 namespace HomeRoom
 {
+    /// <summary>
+    /// Manage a set of Dublin Core metadata with some minor additions.
+    /// </summary>
     public class RDFMetaData
     {
         private bool cleared = false;
@@ -144,6 +147,10 @@ namespace HomeRoom
             cleared = true;
         }
 
+        /// <summary>
+        /// Is the metadata a valid/consistent set?
+        /// </summary>
+        /// <returns>True for yes, false for no.</returns>
         public bool isValid()
         {
             return !cleared && Identifier != null;
