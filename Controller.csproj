@@ -51,6 +51,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestRunner.cs" />
+    <Compile Include="StudentInformation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Crawler\Crawler.csproj">
@@ -60,10 +61,6 @@
     <ProjectReference Include="..\RDFMetaData\RDFGenerator.csproj">
       <Project>{F68FD145-798A-40DF-BD7E-F5239F99FD29}</Project>
       <Name>RDFGenerator</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\web\web.csproj">
-      <Project>{F2EC3A6B-CE54-400D-9E94-A0EF5AA5BB94}</Project>
-      <Name>web</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
