@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Collections;
 using HomeRoom;
 
 public partial class _Default : System.Web.UI.Page
@@ -21,10 +15,11 @@ public partial class _Default : System.Web.UI.Page
                 Int32.Parse(aural.Text),
                 Int32.Parse(tactile.Text));
 
-        queryform.Visible = false;
-
         Controller controller = Controller.getInstance();
         Request request = new Request(student, query.Text, Int32.Parse(speed.SelectedValue));
         controller.addRequest(request);
+
+        query.Text = "";
+        results.Text = "Submission successful!";
     }
 }

@@ -49,10 +49,12 @@
                     <asp:Panel id="queryContent" CssClass="queryContent" runat="server">
                         <asp:TextBox id="query" Width="100%" Font-Size="36pt" runat="server" />
 				        <asp:Button id="submit" text="Submit" OnClick="submitQuery" runat="server" />
-                        <asp:Label id="results" runat="server" />
+                        <asp:Label id="results" Text="hey" runat="server" />
+                        <asp:ValidationSummary runat="server" />
                     </asp:Panel>
 
-                    <asp:RequiredFieldValidator id="speedValidator" ControlToValidate="speed" runat="server" />
+                    <asp:RequiredFieldValidator id="speedValidator" ControlToValidate="speed" ErrorMessage="Please choose a connection speed" Display="None" runat="server" />
+                    <asp:RequiredFieldValidator id="queryValidator" ControlToValidate="query" ErrorMessage="Please enter a topic" Display="None" runat="server" />
 
                     <asp:ScriptManager id="ScriptManager" runat="server" />
                     <ajaxToolkit:CollapsiblePanelExtender id="expanderC" runat="server" TargetControlID="configContent" ExpandControlID="configHeader" CollapseControlID="configHeader" Collapsed="true" />
