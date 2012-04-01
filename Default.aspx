@@ -49,7 +49,7 @@
                     <asp:Panel id="queryContent" CssClass="queryContent" runat="server">
                         <asp:TextBox id="query" Width="100%" Font-Size="36pt" runat="server" />
 				        <asp:Button id="submit" text="Submit" OnClick="submitQuery" runat="server" />
-                        <asp:Label id="results" Text="hey" runat="server" />
+                        <asp:Label id="results" Text="" runat="server" />
                         <asp:ValidationSummary runat="server" />
                     </asp:Panel>
 
