@@ -24,16 +24,18 @@ public partial class _Default : System.Web.UI.Page
         {
             if (control is RadioButtonList)
             {
-                count++;
                 switch (((RadioButtonList)control).SelectedValue)
                 {
                     case "a":
+                        count++;
                         visual++;
                         break;
                     case "b":
+                        count++;
                         aural++;
                         break;
                     case "c":
+                        count++;
                         tactile++;
                         break;
                 }
