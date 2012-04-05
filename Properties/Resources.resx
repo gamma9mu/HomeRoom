@@ -133,4 +133,8 @@
     <value>http://schemas.microsoft.com/LiveSearch/2008/04/XML/multimedia</value>
     <comment>XML Schema for mms prefix in result sets.</comment>
   </data>
+  <data name="WikipediaUrl" xml:space="preserve">
+    <value>http://en.wikipedia.org/w/api.php?format=xml&amp;action=opensearch&amp;search={0}&amp;limit={1}</value>
+    <comment>The Wikipedia API search URL.</comment>
+  </data>
 </root>

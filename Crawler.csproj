@@ -66,6 +66,8 @@
     </Compile>
     <Compile Include="ISearchFactory.cs" />
     <Compile Include="SearchFactoryRegistry.cs" />
+    <Compile Include="Wikipedia\Wikipedia.cs" />
+    <Compile Include="Wikipedia\WikipediaWebCrawler.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

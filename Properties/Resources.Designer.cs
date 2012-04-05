@@ -95,5 +95,14 @@ namespace HomeRoom.Properties {
                 return ResourceManager.GetString("webSchema", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://en.wikipedia.org/w/api.php?format=xml&amp;action=opensearch&amp;search={0}&amp;limit={1}.
+        /// </summary>
+        internal static string WikipediaUrl {
+            get {
+                return ResourceManager.GetString("WikipediaUrl", resourceCulture);
+            }
+        }
     }
 }
