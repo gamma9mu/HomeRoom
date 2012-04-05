@@ -9,7 +9,7 @@ using System.Web;
 
 namespace HomeRoom
 {
-    class WikipediaWebCrawler : ICrawler
+    public class WikipediaWebCrawler : ICrawler
     {
         private XmlNamespaceManager nsmgr;
 
@@ -26,41 +26,41 @@ namespace HomeRoom
 
             string completeUri = String.Format(Properties.Resources.WikipediaUrl,
                 HttpUtility.UrlEncode(query), count);
-            HttpWebRequest webRequest = (HttpWebRequest) WebRequest.Create(completeUri);
+            HttpWebRequest webRequest = (HttpWebRequest) HttpWebRequest.Create(completeUri);
+            webRequest.UserAgent = Properties.Resources.WikipediaUserAgent;
             HttpWebResponse webResponse = (HttpWebResponse) webRequest.GetResponse();
             XmlReader reader = XmlReader.Create(webResponse.GetResponseStream());
 
             // The namespace manager is needed to handle XML prefixes in the results
             nsmgr = new XmlNamespaceManager(reader.NameTable);
-            //nsmgr.AddNamespace("web", Properties.Resources.webSchema);
+            // This is how you deal with an XML namespace that doesn't use a prefix:
+            nsmgr.AddNamespace("zz", Properties.Resources.WikipediaResponseNs);
 
             XPathDocument doc = new XPathDocument(reader);
             XPathNavigator nav = doc.CreateNavigator();
-
+            
             // Find the results
-            XPathNodeIterator iter = (XPathNodeIterator) nav.Evaluate("//Section", nsmgr);
+            XPathNodeIterator iter = nav.Select("//zz:Item", nsmgr);
             if (iter == null) return results; // which is currently empty
 
             while (iter.MoveNext())
             {
                 XPathNavigator iterator = iter.Current;
 
-                nav = iterator.SelectSingleNode("Url", nsmgr);
-                System.Diagnostics.Debug.WriteLine(nav);
+                nav = iterator.SelectSingleNode("zz:Url", nsmgr);
+
                 if (nav == null) continue;
                 string url = nav.InnerXml;
                 Result result = new Result(url);
 
-                nav = iterator.SelectSingleNode("Text", nsmgr);
+                nav = iterator.SelectSingleNode("zz:Text", nsmgr);
                 if (nav != null)
                     result.Title = nav.InnerXml;
                 
 
-                nav = iterator.SelectSingleNode("Description", nsmgr);
+                nav = iterator.SelectSingleNode("zz:Description", nsmgr);
                 if (nav != null)
                     result.Description = nav.InnerXml;
-
-                result.MimeType = "WIKIPEDIA";
 
                 results.Add(result);
             }

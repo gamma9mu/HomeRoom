@@ -137,4 +137,12 @@
     <value>http://en.wikipedia.org/w/api.php?format=xml&amp;action=opensearch&amp;search={0}&amp;limit={1}</value>
     <comment>The Wikipedia API search URL.</comment>
   </data>
+  <data name="WikipediaResponseNs" xml:space="preserve">
+    <value>http://opensearch.org/searchsuggest2</value>
+    <comment>The XML namespace of the Wikipedia responses.</comment>
+  </data>
+  <data name="WikipediaUserAgent" xml:space="preserve">
+    <value>HomeRoom (http://www.cs.siu.edu/cs498/group2/)</value>
+    <comment>The User-Agent header to send to Wikipedia.</comment>
+  </data>
 </root>

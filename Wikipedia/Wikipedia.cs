@@ -8,7 +8,7 @@ namespace HomeRoom
     /// <summary>
     /// Factory class for Wikipedia searches.
     /// </summary>
-    class Wikipedia : ISearchFactory
+    public class Wikipedia : ISearchFactory
     {
         /// <summary>
         /// Get a WikipediaWebCrawler.

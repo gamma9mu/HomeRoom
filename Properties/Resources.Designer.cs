@@ -97,11 +97,29 @@ namespace HomeRoom.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://opensearch.org/searchsuggest2.
+        /// </summary>
+        internal static string WikipediaResponseNs {
+            get {
+                return ResourceManager.GetString("WikipediaResponseNs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://en.wikipedia.org/w/api.php?format=xml&amp;action=opensearch&amp;search={0}&amp;limit={1}.
         /// </summary>
         internal static string WikipediaUrl {
             get {
                 return ResourceManager.GetString("WikipediaUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HomeRoom (http://www.cs.siu.edu/cs498/group2/).
+        /// </summary>
+        internal static string WikipediaUserAgent {
+            get {
+                return ResourceManager.GetString("WikipediaUserAgent", resourceCulture);
             }
         }
     }
