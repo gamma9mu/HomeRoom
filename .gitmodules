@@ -1,9 +1,3 @@
-[submodule "Crawler"]
-	path = Crawler
-	url = git@github.com:gamma9mu/Crawler.git
 [submodule "web"]
 	path = web
 	url = git@github.com:gamma9mu/HomeRoomWebInterface.git
-[submodule "Controller"]
-	path = Controller
-	url = git@github.com:gamma9mu/HomeRoomController.git
