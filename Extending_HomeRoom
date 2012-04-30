@@ -1,0 +1,29 @@
+Adding Web Crawlers
+
+HomeRoom provides an easy mechanism for adding new web crawlers.  The
+ISearchFactory and ICrawler interfaces make the process of adding the
+functionality and registering their availability very easy.  The three step
+process is described here.
+
+The first step, when adding a web crawler to HomeRoom, is creating a search
+factory by implementing an ISearchFactory.  The ISearchFactory interface
+provides for dividing the search among 4 types of media.  None of an
+ISearchFactory's methods may return null.  If no searching capabilities are
+provided for a given media type, an instance of NoopCrawler must be returned by
+the corresponding ISearchFactory class.  Returning null from on of these
+methods may lead to a null reference exception that will crash HomeRoom.
+
+Once the search factory has been created, a crawler must be written for each
+media type you are providing.  Crawlers implement the ICrawler interface.  The
+only requirement of this interface is a method named find.  This method will be
+passed the topic provided by the user and the number of results that are
+expected.  Matching the result count should be considered a best effort.  There
+is no way to guarantee any number of results.  Exceeding the requested result
+count is allowed.  The located items should be cataloged in a List<Result> and
+returned to the caller.  Returning null is strictly forbidden here, as well.
+If no items were found, return an empty list.
+
+The Crawler project's app.config file contains a list of available search
+factories.  The final step is adding your newly created ISearchFactory to this
+list.  Adding your search factory's name to this list informs HomeRoom of its
+existence and HomeRoom will use your crawlers for every search.
